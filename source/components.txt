@@ -22,7 +22,7 @@ MongoDB Connector for BI Components
 
 .. include:: /includes/fact-bi-enterprise.rst
 
-The following tools are available for use with the |bi|:
+This is a test. The following tools are available for use with the |bi|:
 
 - :program:`mongodrdl` generates database schema information for use
   with the |bi|.
