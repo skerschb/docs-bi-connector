@@ -10,7 +10,7 @@ Create a System DSN
    :depth: 1
    :class: singlecol
 
-The following steps describe how to create a system Data Source
+HolaThe following steps describe how to create a system Data Source
 Name (DSN) for the :program:`mongosqld` process. A DSN is a
 saved configuration which describes a database
 connection to be used by an ODBC driver. Once defined and registered,
