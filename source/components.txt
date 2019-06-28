@@ -11,7 +11,7 @@ MongoDB Connector for BI Components
    :class: singlecol
 
 .. versionchanged:: 2.0
-   Version 2.0 of the |bi| introduces a new architecture that replaces
+   PVersion 2.0 of the |bi| introduces a new architecture that replaces
    the previous PostgreSQL foreign data wrapper with the new
    :program:`mongosqld`.
 
