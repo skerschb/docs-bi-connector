@@ -12,7 +12,7 @@ Install MongoDB Connector for BI
 
 .. include:: /includes/fact-bi-enterprise.rst
 
-To set up |bi| with a business intelligence tool such as Tableau,
+Hi To set up |bi| with a business intelligence tool such as Tableau,
 follow the steps on this page.
 
 Supported Platforms
