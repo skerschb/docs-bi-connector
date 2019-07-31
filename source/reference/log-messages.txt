@@ -25,7 +25,7 @@ For example:
 Timestamp
 ---------
 
-Log messages use `iso8601 <https://www.ietf.org/rfc/rfc3339.txt>`_
+Log messages TEST use `iso8601 <https://www.ietf.org/rfc/rfc3339.txt>`_
 format for the timestamp, with a UTC offset set by the server on which
 :program:`mongosqld` is running.
 
