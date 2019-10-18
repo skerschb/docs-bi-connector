@@ -1,0 +1,563 @@
+
+
+
+
+source/components.txt:.. default-domain:: mongodb
+source/components.txt:.. contents:: On this page
+source/components.txt:.. versionchanged:: 2.0
+source/components.txt:   .. include:: /includes/fact-upgrade.rst
+source/components.txt:.. include:: /includes/fact-bi-enterprise.rst
+source/components.txt:.. class:: hidden
+source/components.txt:   .. toctree::
+source/connect/mysql.txt:.. default-domain:: mongodb
+source/connect/mysql.txt:.. contents:: On this page
+source/connect/mysql.txt:.. include:: /includes/auth-info.rst
+source/connect/mysql.txt:.. _connect-with-mysql:
+source/connect/mysql.txt:.. cssclass:: copyable-code
+source/connect/mysql.txt:.. code-block:: sh
+source/connect/mysql.txt:.. _connect-mysql-auth:
+source/connect/mysql.txt:.. cssclass:: copyable-code
+source/connect/mysql.txt:.. code-block:: sh
+source/connect/mysql.txt:.. cssclass:: copyable-code
+source/connect/mysql.txt:.. code-block:: sh
+source/connect/mysql.txt:.. _connect-with-tls-ssl:
+source/connect/mysql.txt:.. cssclass:: copyable-code
+source/connect/mysql.txt:.. code-block:: sh
+source/connect/qlik.txt:.. default-domain:: mongodb
+source/connect/qlik.txt:.. contents:: On this page
+source/connect/qlik.txt:.. include:: /includes/auth-info.rst
+source/connect/qlik.txt:.. _connect-with-qlik:
+source/connect/qlik.txt:.. include:: /includes/steps/connect-qlik-plugin.rst
+source/connect/tableau.txt:.. default-domain:: mongodb
+source/connect/tableau.txt:.. contents:: On this page
+source/connect/tableau.txt:.. include:: /includes/auth-info.rst
+source/connect/tableau.txt:.. _connect-with-tableau:
+source/connect/tableau.txt:.. versionadded:: 2.2
+source/connect/tableau.txt:.. include:: /includes/steps/connect-tableau-mongosql-plugin.rst
+source/connect/tableau.txt:   :guilabel:`More...` then click :guilabel:`MongoDB BI Connector`.
+source/connect/tableau.txt:   .. list-table::
+source/connect/tableau.txt:          .. example::
+source/connect/tableau.txt:             .. figure:: /images/bi-connector/tableau-no-auth.png
+source/connect/tableau.txt:.. _connect-tableau-auth:
+source/connect/tableau.txt:.. include:: /includes/steps/connect-tableau-103-authentication-tdc.rst
+source/connect/tableau.txt:.. include:: /includes/steps/connect-tableau-102-authentication-tdc.rst
+source/connect/tableau.txt:.. include:: /includes/steps/connect-tableau-authentication-envvar.rst
+source/faq.txt:.. default-domain:: mongodb
+source/faq.txt:.. contents:: On this page
+source/faq.txt:.. versionchanged:: 2.0
+source/faq.txt:   .. include:: /includes/fact-upgrade.rst
+source/faq.txt:.. _bi-skip-incompatible-types:
+source/faq.txt:.. include:: /includes/fact-pipeline-views.rst
+source/faq.txt:.. code-block:: javascript
+source/faq.txt:.. seealso::
+source/faq.txt:.. code-block:: javascript
+source/faq.txt:.. code-block:: javascript
+source/faq.txt:.. code-block:: sh
+source/faq.txt:.. code-block:: sh
+source/faq.txt:.. code-block:: sh
+Binary file source/images/bi-connector/qlik-create-connection.png matches
+Binary file source/images/bi-connector/tableau-102-mysql.png matches
+Binary file source/images/bi-connector/tableau-no-auth.png matches
+Binary file source/images/bi-connector/tableau-pick-bi-connector.png matches
+Binary file source/images/bi-connector/windows-odbc-administrator.png matches
+Binary file source/images/bi-connector/windows-odbc-dsn-no-auth.png matches
+Binary file source/images/bi-connector/windows-odbc-dsn.png matches
+source/includes/auth-info.rst:.. _client-authentication:
+source/includes/auth-info.rst:.. versionadded:: 2.2
+source/includes/auth-info.rst:   .. important::
+source/includes/auth-info.rst:   .. note::
+source/includes/auth-info.rst:.. list-table::
+source/includes/auth-info.rst:   * - .. urioption:: source
+source/includes/auth-info.rst:   * - .. urioption:: mechanism
+source/includes/auth-info.rst:       .. note:: 
+source/includes/auth-info.rst:.. example::
+source/includes/auth-info.rst:   .. code::
+source/includes/example-sampleNamespaces.rst:.. code-block:: shell
+source/includes/fact-bi-enterprise.rst:.. note::
+source/includes/fact-mongodrdl-example.rst:.. code-block:: javascript
+source/includes/fact-mongodrdl-example.rst:.. class:: copyable-code
+source/includes/fact-mongodrdl-example.rst:.. code-block:: sh
+source/includes/fact-mongodrdl-example.rst:.. code-block:: yaml
+source/includes/fact-mongosqld-fork.rst:.. code-block:: sh
+source/includes/fact-pipeline-views.rst:.. code-block:: javascript
+source/includes/fact-pipeline-views.rst:.. code-block:: sh
+source/includes/fact-restart-mongosqld.rst:.. important::
+source/includes/facts/tableau-restart.rst:.. important:: 
+source/includes/list-tables/tableau-default-tdc-locations.rst:.. list-table::
+source/includes/options-mongodrdl.yaml:  .. code-block:: none
+source/includes/options-mongodrdl.yaml:     <replSetName>/<hostname1><:port>,<hostname2><:port>,<...>
+source/includes/options-mongodrdl.yaml:...
+source/includes/options-mongosqld.yaml:  .. deprecated:: 2.2
+source/includes/options-mongosqld.yaml:  .. versionadded:: 2.3
+source/includes/options-mongosqld.yaml:  .. versionadded:: 2.3
+source/includes/options-mongosqld.yaml:  .. versionadded:: 2.3
+source/includes/options-mongosqld.yaml:  .. versionadded:: 2.3
+source/includes/options-mongosqld.yaml:  .. versionadded:: 2.3
+source/includes/options-mongosqld.yaml:  .. example::
+source/includes/options-mongosqld.yaml:  .. versionadded:: 2.3
+source/includes/options-mongosqld.yaml:  .. list-table::
+source/includes/options-mongosqld.yaml:  .. versionadded:: 2.2
+source/includes/options-mongosqld.yaml:...
+source/includes/options-shared.yaml:  .. code-block:: none
+source/includes/options-shared.yaml:     <replSetName>/<hostname1><:port>,<hostname2><:port>,<...>
+source/includes/options-shared.yaml:  .. versionchanged:: 3.0.0
+source/includes/options-shared.yaml:  .. versionchanged:: 3.0.0
+source/includes/options-shared.yaml:  .. versionchanged:: 3.0.2
+source/includes/options-shared.yaml:  .. list-table::
+source/includes/options-shared.yaml:  .. warning::
+source/includes/options-shared.yaml:...
+source/includes/release-notes/fact-release-notes-2.0.rst:.. seealso:: :doc:`/supported-operations`
+source/includes/steps-connect-qlik-plugin.yaml:     .. figure:: /images/bi-connector/qlik-create-connection.png
+source/includes/steps-connect-qlik-plugin.yaml:     .. note::
+source/includes/steps-connect-qlik-plugin.yaml:...
+source/includes/steps-connect-tableau-102-authentication-tdc.yaml:  .. class:: copyable-code
+source/includes/steps-connect-tableau-102-authentication-tdc.yaml:  .. literalinclude:: /includes/tdc/mysql-ssl.tdc
+source/includes/steps-connect-tableau-102-authentication-tdc.yaml:  .. include:: /includes/list-tables/tableau-default-tdc-locations.rst
+source/includes/steps-connect-tableau-102-authentication-tdc.yaml:  .. include:: /includes/facts/tableau-restart.rst
+source/includes/steps-connect-tableau-102-authentication-tdc.yaml:     on :guilabel:`More...` then click :guilabel:`MongoDB BI
+source/includes/steps-connect-tableau-102-authentication-tdc.yaml:     .. list-table::
+source/includes/steps-connect-tableau-102-authentication-tdc.yaml:            .. example::
+source/includes/steps-connect-tableau-102-authentication-tdc.yaml:               .. figure:: /images/bi-connector/tableau-102-mysql.png
+source/includes/steps-connect-tableau-102-authentication-tdc.yaml:...
+source/includes/steps-connect-tableau-103-authentication-tdc.yaml:  .. class:: copyable-code
+source/includes/steps-connect-tableau-103-authentication-tdc.yaml:  .. literalinclude:: /includes/tdc/mongodb-ssl.tdc
+source/includes/steps-connect-tableau-103-authentication-tdc.yaml:  .. include:: /includes/list-tables/tableau-default-tdc-locations.rst
+source/includes/steps-connect-tableau-103-authentication-tdc.yaml:  .. include:: /includes/facts/tableau-restart.rst
+source/includes/steps-connect-tableau-103-authentication-tdc.yaml:     on :guilabel:`More...` then click :guilabel:`MongoDB BI
+source/includes/steps-connect-tableau-103-authentication-tdc.yaml:     .. list-table::
+source/includes/steps-connect-tableau-103-authentication-tdc.yaml:            .. example::
+source/includes/steps-connect-tableau-103-authentication-tdc.yaml:               .. figure:: /images/bi-connector/mdb-named-with-ssl.png
+source/includes/steps-connect-tableau-103-authentication-tdc.yaml:        * - :guilabel:`No custom configuration file specified (click to change)...`
+source/includes/steps-connect-tableau-103-authentication-tdc.yaml:     .. list-table::
+source/includes/steps-connect-tableau-103-authentication-tdc.yaml:            .. example::
+source/includes/steps-connect-tableau-103-authentication-tdc.yaml:               .. figure:: /images/bi-connector/mdb-pick-ssl-cert.png
+source/includes/steps-connect-tableau-103-authentication-tdc.yaml:        * - :guilabel:`Browse...`
+source/includes/steps-connect-tableau-103-authentication-tdc.yaml:...
+source/includes/steps-connect-tableau-authentication-envvar.yaml:    .. code-block:: sh
+source/includes/steps-connect-tableau-authentication-envvar.yaml:    .. code-block:: powershell
+source/includes/steps-connect-tableau-authentication-envvar.yaml:    .. code::
+source/includes/steps-connect-tableau-authentication-envvar.yaml:   .. figure:: /images/bi-connector/tableau-102-mysql.png
+source/includes/steps-connect-tableau-authentication-envvar.yaml:...
+source/includes/steps-connect-tableau-mongosql-plugin.yaml:  .. list-table::
+source/includes/steps-connect-tableau-mongosql-plugin.yaml:         .. example::
+source/includes/steps-connect-tableau-mongosql-plugin.yaml:            .. class:: copyable-code
+source/includes/steps-connect-tableau-mongosql-plugin.yaml:            .. code-block:: sh
+source/includes/steps-connect-tableau-mongosql-plugin.yaml:            .. note::
+source/includes/steps-connect-tableau-mongosql-plugin.yaml:     .. class:: copyable-code
+source/includes/steps-connect-tableau-mongosql-plugin.yaml:     .. code-block:: ini
+source/includes/steps-connect-tableau-mongosql-plugin.yaml:     .. list-table::
+source/includes/steps-connect-tableau-mongosql-plugin.yaml:            .. class:: copyable-code
+source/includes/steps-connect-tableau-mongosql-plugin.yaml:            .. literalinclude:: /includes/tdc/mongodb-mac.tdc
+source/includes/steps-connect-tableau-mongosql-plugin.yaml:            .. class:: copyable-code
+source/includes/steps-connect-tableau-mongosql-plugin.yaml:            .. literalinclude:: /includes/tdc/mongodb-win.tdc
+source/includes/steps-connect-tableau-mongosql-plugin.yaml:     .. include:: /includes/list-tables/tableau-default-tdc-locations.rst
+source/includes/steps-connect-tableau-mongosql-plugin.yaml:  .. include:: /includes/facts/tableau-restart.rst
+source/includes/steps-connect-tableau-mongosql-plugin.yaml:     on :guilabel:`More...` then click :guilabel:`MongoDB BI
+source/includes/steps-connect-tableau-mongosql-plugin.yaml:     .. list-table::
+source/includes/steps-connect-tableau-mongosql-plugin.yaml:            .. example::
+source/includes/steps-connect-tableau-mongosql-plugin.yaml:               .. figure:: /images/bi-connector/mdb-bi-connector-panel.png
+source/includes/steps-connect-tableau-mongosql-plugin.yaml:     on :guilabel:`More...` then click :guilabel:`MongoDB BI
+source/includes/steps-connect-tableau-mongosql-plugin.yaml:     .. list-table::
+source/includes/steps-connect-tableau-mongosql-plugin.yaml:            .. example::
+source/includes/steps-connect-tableau-mongosql-plugin.yaml:               .. figure:: /images/bi-connector/tableau-102-mysql.png
+source/includes/steps-connect-tableau-mongosql-plugin.yaml:...
+source/includes/steps-create-system-dsn-auth.yaml:   .. figure:: /images/bi-connector/windows-odbc-administrator.png
+source/includes/steps-create-system-dsn-auth.yaml:   .. list-table::
+source/includes/steps-create-system-dsn-auth.yaml:          .. code-block:: shell
+source/includes/steps-create-system-dsn-auth.yaml:          .. note::
+source/includes/steps-create-system-dsn-auth.yaml:   .. figure:: /images/bi-connector/windows-odbc-dsn.png
+source/includes/steps-create-system-dsn-auth.yaml:...
+source/includes/steps-create-system-dsn-no-auth.yaml:   .. figure:: /images/bi-connector/windows-odbc-administrator.png
+source/includes/steps-create-system-dsn-no-auth.yaml:   .. list-table::
+source/includes/steps-create-system-dsn-no-auth.yaml:   .. note::
+source/includes/steps-create-system-dsn-no-auth.yaml:   .. figure:: /images/bi-connector/windows-odbc-dsn-no-auth.png
+source/includes/steps-create-system-dsn-no-auth.yaml:...
+source/includes/steps-install-bi-connector.yaml:         .. cssclass:: copyable-code
+source/includes/steps-install-bi-connector.yaml:         .. code-block:: sh
+source/includes/steps-install-bi-connector.yaml:         .. cssclass:: copyable-code
+source/includes/steps-install-bi-connector.yaml:         .. code-block:: sh
+source/includes/steps-install-bi-connector.yaml:         .. cssclass:: copyable-code
+source/includes/steps-install-bi-connector.yaml:         .. code-block:: sh
+source/includes/steps-install-bi-connector.yaml:         .. cssclass:: copyable-code
+source/includes/steps-install-bi-connector.yaml:         .. code-block:: sh
+source/includes/steps-install-bi-connector.yaml:         .. cssclass:: copyable-code
+source/includes/steps-install-bi-connector.yaml:         .. code-block:: sh
+source/includes/steps-install-bi-connector.yaml:         .. cssclass:: copyable-code
+source/includes/steps-install-bi-connector.yaml:         .. code-block:: sh
+source/includes/steps-install-bi-connector.yaml:         .. cssclass:: copyable-code
+source/includes/steps-install-bi-connector.yaml:         .. code-block:: sh
+source/includes/steps-install-bi-connector.yaml:         .. cssclass:: copyable-code
+source/includes/steps-install-bi-connector.yaml:         .. code-block:: sh
+source/includes/steps-install-bi-connector.yaml:  .. note::
+source/includes/steps-install-bi-connector.yaml:  .. seealso::
+source/includes/steps-install-bi-connector.yaml:  .. note::
+source/includes/steps-install-bi-connector.yaml:      .. cssclass:: copyable-code
+source/includes/steps-install-bi-connector.yaml:      .. code-block:: sh
+source/includes/steps-install-bi-connector.yaml:      .. cssclass:: copyable-code
+source/includes/steps-install-bi-connector.yaml:      .. code-block:: sh
+source/includes/steps-install-bi-connector.yaml:      .. cssclass:: copyable-code
+source/includes/steps-install-bi-connector.yaml:      .. code-block:: sh
+source/includes/steps-install-bi-connector.yaml:      .. cssclass:: copyable-code
+source/includes/steps-install-bi-connector.yaml:      .. code-block:: sh
+source/includes/steps-install-bi-connector.yaml:  .. list-table::
+source/includes/steps-install-bi-connector.yaml:...
+source/includes/tableau-default-tdc-locations.rst:.. list-table::
+source/includes/toc-installation-landing.yaml:...
+source/includes/toc-reference-landing.yaml:...
+source/includes/toc-using-bi-landing.yaml:...
+source/index.txt:.. _bi-connector:
+source/index.txt:.. default-domain:: mongodb
+source/index.txt:.. contents:: On this page
+source/index.txt:.. include:: /includes/fact-bi-enterprise.rst
+source/index.txt:.. figure:: /images/bi-connector/bi-connector.bakedsvg.svg
+source/index.txt:.. include:: /includes/release-notes/fact-release-notes-2-3.rst
+source/index.txt:.. include:: /includes/release-notes/fact-release-notes-2.2.rst
+source/index.txt:.. include:: /includes/release-notes/fact-release-notes-2.0.rst
+source/index.txt:.. class:: hidden
+source/index.txt:   .. toctree::
+source/installation.txt:.. default-domain:: mongodb
+source/installation.txt:.. contents:: On this page
+source/installation.txt:.. include:: /includes/toc/dfn-list-installation-landing.rst
+source/installation.txt:.. class:: hidden
+source/installation.txt:   .. toctree::
+source/reference/auth-plugin-c.txt:.. default-domain:: mongodb
+source/reference/auth-plugin-c.txt:.. contents:: On this page
+source/reference/auth-plugin-c.txt:.. versionadded:: 2.2
+source/reference/auth-plugin-c.txt:     .. code-block:: sh
+source/reference/auth-plugin-c.txt:.. _mysql-command-options:
+source/reference/auth-plugin-c.txt:.. list-table::
+source/reference/auth-plugin-c.txt:       .. note::
+source/reference/auth-plugin-c.txt:.. _mysql-example-command:
+source/reference/auth-plugin-c.txt:.. cssclass:: copyable-code
+source/reference/auth-plugin-c.txt:.. code-block:: sh
+source/reference/auth-plugin-c.txt:.. _odbc-connection:
+source/reference/auth-plugin-c.txt:.. _mysql-config: 
+source/reference/auth-plugin-c.txt:   .. cssclass:: copyable-code   
+source/reference/auth-plugin-c.txt:   .. code-block:: sh
+source/reference/auth-plugin-c.txt:   .. cssclass:: copyable-code   
+source/reference/auth-plugin-c.txt:   .. code-block:: sh
+source/reference/drdl.txt:.. default-domain:: mongodb
+source/reference/drdl.txt:.. contents:: On this page
+source/reference/drdl.txt:.. _drdl:
+source/reference/drdl.txt:.. code-block:: yaml
+source/reference/drdl.txt:.. include:: /includes/fact-mongodrdl-example.rst
+source/reference/drdl.txt:.. list-table::
+source/reference/drdl.txt:       .. include:: /includes/fact-geospatial-views.rst
+source/reference/drdl.txt:     - .. _drdl-heterogeneous:
+source/reference/drdl.txt:       .. seealso::
+source/reference/drdl.txt:.. code-block:: javascript
+source/reference/drdl.txt:.. list-table::
+source/reference/drdl.txt:.. code-block:: javascript
+source/reference/drdl.txt:  .. list-table::
+source/reference/drdl.txt:  .. list-table::
+source/reference/drdl.txt:  .. list-table::
+source/reference/drdl.txt:.. code-block:: sql
+source/reference/drdl.txt:  .. list-table::
+source/reference/drdl.txt:  .. list-table::
+source/reference/drdl.txt:.. code-block:: yaml
+source/reference/drdl.txt:.. code-block:: sql
+source/reference/drdl.txt:.. _bi-pipeline:
+source/reference/drdl.txt:.. include:: /includes/fact-pipeline-views.rst
+source/reference/drdl.txt:.. code-block:: javascript
+source/reference/drdl.txt:.. code-block:: yaml
+source/reference/drdl.txt:.. _bi-geospatial:
+source/reference/drdl.txt:.. versionadded:: 1.1.0
+source/reference/drdl.txt:.. code-block:: javascript
+source/reference/drdl.txt:.. code-block:: yaml
+source/reference/drdl.txt:.. include:: /includes/fact-geospatial-views.rst
+source/reference/log-messages.txt:.. default-domain:: mongodb
+source/reference/log-messages.txt:.. contents:: On this page
+source/reference/log-messages.txt:.. code-block:: none
+source/reference/log-messages.txt:.. code-block:: none
+source/reference/log-messages.txt:.. list-table::
+source/reference/log-messages.txt:.. data:: CONTROL
+source/reference/log-messages.txt:.. data:: NETWORK
+source/reference/log-messages.txt:.. data:: ALGEBRIZER
+source/reference/log-messages.txt:.. data:: OPTIMIZER
+source/reference/log-messages.txt:.. data:: EXECUTOR
+source/reference/log-messages.txt:.. code-block:: shell
+source/reference/log-messages.txt:.. code-block:: shell
+source/reference/mongodrdl.txt:.. default-domain:: mongodb
+source/reference/mongodrdl.txt:.. contents:: On this page
+source/reference/mongodrdl.txt:.. only:: html
+source/reference/mongodrdl.txt:   .. meta::
+source/reference/mongodrdl.txt:.. only:: (not man)
+source/reference/mongodrdl.txt:   .. binary:: mongodrdl
+source/reference/mongodrdl.txt:.. include:: /includes/fact-bi-enterprise.rst
+source/reference/mongodrdl.txt:.. include:: /includes/fact-restart-mongosqld.rst
+source/reference/mongodrdl.txt:.. program:: mongodrdl
+source/reference/mongodrdl.txt:.. include:: /includes/option/option-mongodrdl-help.rst
+source/reference/mongodrdl.txt:.. include:: /includes/option/option-mongodrdl-version.rst
+source/reference/mongodrdl.txt:.. include:: /includes/option/option-mongodrdl-verbose.rst
+source/reference/mongodrdl.txt:.. include:: /includes/option/option-mongodrdl-quiet.rst
+source/reference/mongodrdl.txt:.. include:: /includes/option/option-mongodrdl-host.rst
+source/reference/mongodrdl.txt:.. include:: /includes/option/option-mongodrdl-port.rst
+source/reference/mongodrdl.txt:.. include:: /includes/option/option-mongodrdl-db.rst
+source/reference/mongodrdl.txt:.. include:: /includes/option/option-mongodrdl-collection.rst
+source/reference/mongodrdl.txt:.. include:: /includes/option/option-mongodrdl-customFilterField.rst
+source/reference/mongodrdl.txt:.. include:: /includes/option/option-mongodrdl-out.rst
+source/reference/mongodrdl.txt:.. include:: /includes/option/option-mongodrdl-sampleSize.rst
+source/reference/mongodrdl.txt:.. include:: /includes/option/option-mongodrdl-uuidSubtype3Encoding.rst
+source/reference/mongodrdl.txt:.. include:: /includes/option/option-mongodrdl-preJoined.rst
+source/reference/mongodrdl.txt:.. Kerberos Options
+source/reference/mongodrdl.txt:.. ~~~~~~~~~~~~~~~~
+source/reference/mongodrdl.txt:.. .. include:: /includes/option/option-mongodrdl-gssapiServiceName.rst
+source/reference/mongodrdl.txt:.. .. include:: /includes/option/option-mongodrdl-gssapiHostName.rst
+source/reference/mongodrdl.txt:.. include:: /includes/option/option-mongodrdl-ssl.rst
+source/reference/mongodrdl.txt:.. include:: /includes/option/option-mongodrdl-sslCAFile.rst
+source/reference/mongodrdl.txt:.. include:: /includes/option/option-mongodrdl-sslPEMKeyFile.rst
+source/reference/mongodrdl.txt:.. include:: /includes/option/option-mongodrdl-sslPEMKeyPassword.rst
+source/reference/mongodrdl.txt:.. include:: /includes/option/option-mongodrdl-sslCRLFile.rst
+source/reference/mongodrdl.txt:.. include:: /includes/option/option-mongodrdl-sslAllowInvalidCertificates.rst
+source/reference/mongodrdl.txt:.. include:: /includes/option/option-mongodrdl-sslAllowInvalidHostnames.rst
+source/reference/mongodrdl.txt:.. include:: /includes/option/option-mongodrdl-sslFIPSMode.rst
+source/reference/mongodrdl.txt:.. _mongodrdl-auth-options: 
+source/reference/mongodrdl.txt:.. include:: /includes/option/option-mongodrdl-username.rst
+source/reference/mongodrdl.txt:.. include:: /includes/option/option-mongodrdl-password.rst
+source/reference/mongodrdl.txt:.. include:: /includes/option/option-mongodrdl-authenticationDatabase.rst
+source/reference/mongodrdl.txt:.. include:: /includes/option/option-mongodrdl-authenticationMechanism.rst
+source/reference/mongodrdl.txt:.. _mongodrdl-custom-filters:
+source/reference/mongodrdl.txt:.. include:: /includes/fact-mongodrdl-example.rst
+source/reference/mongodrdl.txt:.. _mongodrdl-custom-filters-example:
+source/reference/mongodrdl.txt:.. code-block:: sh
+source/reference/mongodrdl.txt:.. code-block:: yaml
+source/reference/mongodrdl.txt:.. code-block:: sql
+source/reference/mongodrdl.txt:.. code-block:: javascript
+source/reference/mongodrdl.txt:.. example::
+source/reference/mongodrdl.txt:   .. class:: copyable-code
+source/reference/mongodrdl.txt:   .. code-block:: shell
+source/reference/mongodrdl.txt:.. example::
+source/reference/mongodrdl.txt:   .. class:: copyable-code
+source/reference/mongodrdl.txt:   .. code-block:: shell
+source/reference/mongodrdl.txt:      mongodrdl --host <domain0>.mongodb.net:27017,<domain1>.mongodb.net:27017,... \
+source/reference/mongosqld.txt:.. default-domain:: mongodb
+source/reference/mongosqld.txt:.. contents:: On this page
+source/reference/mongosqld.txt:.. only:: html
+source/reference/mongosqld.txt:   .. meta::
+source/reference/mongosqld.txt:.. only:: (not man)
+source/reference/mongosqld.txt:   .. binary:: mongosqld
+source/reference/mongosqld.txt:.. include:: /includes/fact-bi-enterprise.rst
+source/reference/mongosqld.txt:.. code-block:: shell
+source/reference/mongosqld.txt:.. code-block:: shell
+source/reference/mongosqld.txt:.. include:: /includes/example-sampleNamespaces.rst
+source/reference/mongosqld.txt:.. _mongosqld-command-line-options:
+source/reference/mongosqld.txt:.. _msqld-core-options:
+source/reference/mongosqld.txt:.. program:: mongosqld
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-help.rst
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-addr.rst
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-version.rst
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-config.rst
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-mongo-uri.rst
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-mongo-versioncompatibility.rst
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-maxVarcharLength.rst
+source/reference/mongosqld.txt:.. _msqld-log-options:
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-schema.rst
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-schemaDirectory.rst
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-sampleNamespaces.rst
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-sampleSource.rst
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-sampleSize.rst
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-sampleMode.rst
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-sampleRefreshIntervalSecs.rst
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-uuidSubtype3Encoding.rst
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-logAppend.rst
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-logPath.rst
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-logRotate.rst
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-verbose.rst
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-quiet.rst
+source/reference/mongosqld.txt:.. _msqld-mongodb-tls-options:
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-mongo-ssl.rst
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-mongo-sslPEMKeyFile.rst
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-mongo-sslPEMKeyPassword.rst
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-mongo-sslAllowInvalidHostnames.rst
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-mongo-sslAllowInvalidCertificates.rst
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-mongo-sslCAFile.rst
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-mongo-sslCRLFile.rst
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-mongo-sslFIPSMode.rst
+source/reference/mongosqld.txt:.. _msqld-client-tls-options:
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-sslMode.rst
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-sslPEMKeyFile.rst
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-sslPEMKeyPassword.rst
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-sslAllowInvalidCertificates.rst
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-sslAllowInvalidHostnames.rst
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-sslCAFile.rst
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-sslCRLFile.rst
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-auth.rst
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-defaultAuthSource.rst
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-defaultAuthMechanism.rst
+source/reference/mongosqld.txt:.. _msqld-socket-options:
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-filePermissions.rst
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-noUnixSocket.rst
+source/reference/mongosqld.txt:.. include:: /includes/option/option-mongosqld-unixSocketPrefix.rst
+source/reference/mongosqld.txt:.. _config-format:
+source/reference/mongosqld.txt:.. _msqld-conf-log-options:
+source/reference/mongosqld.txt:.. code::
+source/reference/mongosqld.txt:.. list-table::
+source/reference/mongosqld.txt:   * - .. setting:: systemLog.logAppend
+source/reference/mongosqld.txt:   * - .. setting:: systemLog.logRotate
+source/reference/mongosqld.txt:   * - .. setting:: systemLog.path
+source/reference/mongosqld.txt:   * - .. setting:: systemLog.quiet
+source/reference/mongosqld.txt:   * - .. setting:: systemLog.verbosity
+source/reference/mongosqld.txt:.. _msqld-conf-schema-options:
+source/reference/mongosqld.txt:.. code::
+source/reference/mongosqld.txt:.. list-table::
+source/reference/mongosqld.txt:   * - .. setting:: schema.path
+source/reference/mongosqld.txt:   * - .. setting:: schema.maxVarcharLength
+source/reference/mongosqld.txt:.. code::
+source/reference/mongosqld.txt:.. list-table::
+source/reference/mongosqld.txt:   * - .. setting:: schema.sample.mode
+source/reference/mongosqld.txt:   * - .. setting:: schema.sample.source
+source/reference/mongosqld.txt:   * - .. setting:: schema.sample.size
+source/reference/mongosqld.txt:   * - .. setting:: schema.sample.namespaces
+source/reference/mongosqld.txt:   * - .. setting:: schema.sample.refreshIntervalSecs
+source/reference/mongosqld.txt:   * - .. setting:: schema.sample.uuidSubtype3Encoding
+source/reference/mongosqld.txt:.. _msqld-conf-runtime-options:
+source/reference/mongosqld.txt:.. code::
+source/reference/mongosqld.txt:.. include:: /includes/option/setting-conf-runtime.memory.maxPerStage.rst
+source/reference/mongosqld.txt:.. _msqld-conf-net-options:
+source/reference/mongosqld.txt:.. code::
+source/reference/mongosqld.txt:.. list-table::
+source/reference/mongosqld.txt:   * - .. setting:: net.bindIp
+source/reference/mongosqld.txt:       .. versionchanged:: 2.2
+source/reference/mongosqld.txt:       .. example::
+source/reference/mongosqld.txt:   * - .. setting:: net.port
+source/reference/mongosqld.txt:   * - .. setting:: net.unixDomainSocket.enabled
+source/reference/mongosqld.txt:   * - .. setting:: net.unixDomainSocket.pathPrefix
+source/reference/mongosqld.txt:   * - .. setting:: net.unixDomainSocket.filePermissions
+source/reference/mongosqld.txt:   * - .. setting:: net.ssl.allowInvalidCertificates
+source/reference/mongosqld.txt:   * - .. setting:: net.ssl.PEMKeyFile
+source/reference/mongosqld.txt:   * - .. setting:: net.ssl.PEMKeyPassword
+source/reference/mongosqld.txt:   * - .. setting:: net.ssl.CAFile
+source/reference/mongosqld.txt:.. _msqld-conf-security-options:
+source/reference/mongosqld.txt:.. code::
+source/reference/mongosqld.txt:.. list-table::
+source/reference/mongosqld.txt:   * - .. setting:: security.enabled
+source/reference/mongosqld.txt:   * - .. setting:: security.defaultMechanism
+source/reference/mongosqld.txt:   * - .. setting:: security.defaultSource
+source/reference/mongosqld.txt:.. _msqld-conf-host-options:
+source/reference/mongosqld.txt:.. code::
+source/reference/mongosqld.txt:.. list-table::
+source/reference/mongosqld.txt:   * - .. setting:: mongodb.versionCompatibility
+source/reference/mongosqld.txt:   * - .. setting:: mongodb.net.uri
+source/reference/mongosqld.txt:   * - .. setting:: mongodb.net.ssl.enabled
+source/reference/mongosqld.txt:   * - .. setting:: mongodb.net.ssl.allowInvalidCertificates
+source/reference/mongosqld.txt:   * - .. setting:: mongodb.net.ssl.allowInvalidHostnames
+source/reference/mongosqld.txt:   * - .. setting:: mongodb.net.ssl.PEMKeyFile
+source/reference/mongosqld.txt:   * - .. setting:: mongodb.net.ssl.PEMKeyPassword
+source/reference/mongosqld.txt:   * - .. setting:: mongodb.net.ssl.CAFile
+source/reference/mongosqld.txt:   * - .. setting:: mongodb.net.ssl.CRLFile
+source/reference/mongosqld.txt:   * - .. setting:: mongodb.net.ssl.FIPSMode
+source/reference/mongosqld.txt:.. _msqld-conf-proc-options:
+source/reference/mongosqld.txt:.. code::
+source/reference/mongosqld.txt:.. list-table::
+source/reference/mongosqld.txt:   * - .. setting:: processManagement.service.name
+source/reference/mongosqld.txt:   * - .. setting:: processManagement.service.displayName
+source/reference/mongosqld.txt:   * - .. setting:: processManagement.service.description
+source/reference/mongosqld.txt:.. _usage-examples:
+source/reference/mongosqld.txt:.. code-block:: shell
+source/reference/mongosqld.txt:.. _sampleNamespaces-example:
+source/reference/mongosqld.txt:.. include:: /includes/example-sampleNamespaces.rst
+source/reference/mongosqld.txt:.. code-block:: shell
+source/reference/mongosqld.txt:.. code-block:: shell
+source/reference/mongosqld.txt:.. code-block:: shell
+source/reference/mongosqld.txt:.. note::
+source/reference/mongosqld.txt:.. code-block:: shell
+source/reference/mongosqld.txt:.. code-block:: shell
+source/reference/mongosqld.txt:.. warning::
+source/reference/mongosqld.txt:.. code-block:: yaml
+source/reference/mongosqld.txt:.. code-block:: sh
+source/reference/mongosqld.txt:.. note::
+source/reference/mongosqld.txt:.. class:: copyable-code
+source/reference/mongosqld.txt:.. code-block:: sh
+source/reference/mongosqld.txt:.. note:: Do not specify a username and password in :option:`--mongo-uri`. The
+source/reference/mongosqld.txt:.. class:: copyable-code
+source/reference/mongosqld.txt:.. code-block:: sh
+source/reference/mongosqld.txt:.. class:: copyable-code
+source/reference/mongosqld.txt:.. code-block:: sh
+source/reference.txt:.. default-domain:: mongodb
+source/reference.txt:.. contents:: On this page
+source/reference.txt:.. include:: /includes/toc/dfn-list-reference-landing.rst
+source/reference.txt:.. class:: hidden
+source/reference.txt:   .. toctree::
+source/release-notes.txt:.. default-domain:: mongodb
+source/release-notes.txt:.. contents:: On this page
+source/release-notes.txt:.. !!!!! NOTE TO FOLKS UPDATING THIS !!!!!
+source/release-notes.txt:.. The BI Connector team derives
+source/release-notes.txt:.. the links to the release notes based on the assumption that we'll
+source/release-notes.txt:.. use the following heading format: |bi| x.x.x
+source/release-notes.txt:.. When you add notes for a new release, you **must** use that
+source/release-notes.txt:.. formatting for the H3 so that the rendered target is the format they
+source/release-notes.txt:.. expect and we don't break the links on the downloads page.
+source/release-notes.txt:.. (DOCS-9670 for context)
+source/release-notes.txt:.. _bi-2-2-1:
+source/release-notes.txt:.. _bi-2-2-0:
+source/release-notes.txt:.. _bi-2-1-0:
+source/release-notes.txt:.. note::
+source/release-notes.txt:   .. include:: /includes/fact-mongosqld-fork.rst
+source/release-notes.txt:.. include:: /includes/release-notes/fact-release-notes-2.0.rst
+source/release-notes.txt:.. _bi-1.1.0-release-notes:
+source/schema-configuration.txt:.. default-domain:: mongodb
+source/schema-configuration.txt:.. contents:: On this page
+source/schema-configuration.txt:.. _schema-with-drdl-file:
+source/schema-configuration.txt:.. include:: /includes/fact-restart-mongosqld.rst
+source/supported-operations.txt:.. default-domain:: mongodb
+source/supported-operations.txt:.. contents:: Supported MySQL functions, constructors, and operators
+source/supported-operations.txt:.. list-table::
+source/supported-operations.txt:   * - ``BETWEEN ... AND ...``
+source/supported-operations.txt:   * - ``NOT BETWEEN ... AND ...``
+source/supported-operations.txt:.. list-table::
+source/supported-operations.txt:.. list-table::
+source/supported-operations.txt:.. list-table::
+source/supported-operations.txt:.. list-table::
+source/supported-operations.txt:.. list-table::
+source/supported-operations.txt:.. _sql-date-and-time:
+source/supported-operations.txt:.. list-table::
+source/supported-operations.txt:.. list-table::
+source/supported-operations.txt:.. list-table::
+source/supported-operations.txt:.. list-table::
+source/supported-operations.txt:.. list-table::
+source/supported-operations.txt:.. list-table::
+source/supported-operations.txt:.. list-table::
+source/tutorial/create-system-dsn.txt:.. default-domain:: mongodb
+source/tutorial/create-system-dsn.txt:.. contents:: On this page
+source/tutorial/create-system-dsn.txt:.. include:: /includes/steps/create-system-dsn-auth.rst
+source/tutorial/install-auth-plugin-c.txt:.. _install-auth-c-plugin:
+source/tutorial/install-auth-plugin-c.txt:.. default-domain:: mongodb
+source/tutorial/install-auth-plugin-c.txt:.. contents:: On this page
+source/tutorial/install-auth-plugin-c.txt:.. COMMENT -- not enough time to reorg properly. I just copied this.
+source/tutorial/install-auth-plugin-c.txt:.. versionadded:: 2.2
+source/tutorial/install-auth-plugin-c.txt:     .. code-block:: sh
+source/tutorial/install-auth-plugin-jdbc.txt:.. _install-jdbc-plugin:
+source/tutorial/install-auth-plugin-jdbc.txt:.. default-domain:: mongodb
+source/tutorial/install-auth-plugin-jdbc.txt:.. contents:: On this page
+source/tutorial/install-auth-plugin-jdbc.txt:.. versionadded:: 2.2
+source/tutorial/install-auth-plugin-jdbc.txt:   .. cssclass:: copyable-code
+source/tutorial/install-auth-plugin-jdbc.txt:   .. code-block:: xml
+source/tutorial/install-auth-plugin-jdbc.txt:   .. seealso::
+source/tutorial/install-auth-plugin-jdbc.txt:   .. cssclass:: copyable-code
+source/tutorial/install-auth-plugin-jdbc.txt:   .. code-block:: xml
+source/tutorial/install-auth-plugin-jdbc.txt:   .. cssclass:: copyable-code
+source/tutorial/install-auth-plugin-jdbc.txt:   .. code-block:: sh
+source/tutorial/install-auth-plugin-jdbc.txt:   .. seealso::
+source/tutorial/install-auth-plugin-jdbc.txt:   .. list-table::
+source/tutorial/install-auth-plugin-jdbc.txt:   .. example::
+source/tutorial/install-auth-plugin-jdbc.txt:      .. cssclass:: copyable-code
+source/tutorial/install-auth-plugin-jdbc.txt:      .. code-block:: sh
+source/tutorial/install-auth-plugin-jdbc.txt:      .. cssclass:: copyable-code
+source/tutorial/install-auth-plugin-jdbc.txt:      .. code-block:: sh
+source/tutorial/install-auth-plugin-jdbc.txt:.. note::
+source/tutorial/install-bi-connector.txt:.. default-domain:: mongodb
+source/tutorial/install-bi-connector.txt:.. contents:: On this page
+source/tutorial/install-bi-connector.txt:.. include:: /includes/fact-bi-enterprise.rst
+source/tutorial/install-bi-connector.txt:.. list-table::
+source/tutorial/install-bi-connector.txt:.. cssclass:: copyable-code
+source/tutorial/install-bi-connector.txt:.. code-block:: sh
+source/tutorial/install-bi-connector.txt:.. cssclass:: copyable-code
+source/tutorial/install-bi-connector.txt:.. code-block:: sh
+source/tutorial/install-bi-connector.txt:.. cssclass:: copyable-code
+source/tutorial/install-bi-connector.txt:.. code-block:: sh
+source/tutorial/install-bi-connector.txt:.. _start-mongosqld-system-service:
+source/tutorial/install-bi-connector.txt:.. include:: /includes/steps/install-bi-connector.rst
+source/tutorial/using-the-bi.txt:.. default-domain:: mongodb
+source/tutorial/using-the-bi.txt:.. include:: /includes/toc/dfn-list-using-bi-landing.rst
+source/tutorial/using-the-bi.txt:.. class:: hidden
+source/tutorial/using-the-bi.txt:   .. toctree::
