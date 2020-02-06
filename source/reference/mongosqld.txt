@@ -25,63 +25,94 @@ Description
 
 .. include:: /includes/fact-bi-enterprise.rst
 
-:program:`mongosqld` accepts incoming requests from a SQL client and
-proxies those requests to a :program:`mongod` or :program:`mongos`
-instance.
+:binary:`~bin.mongosqld` accepts incoming requests from a SQL client and
+proxies those requests to a :binary:`~bin.mongod` or
+:binary:`~bin.mongos` instance.
 
 Usage
 -----
 
 *New in version 2.3:*
 
-You can start :program:`mongosqld` either with a schema file in
+You can start :binary:`~bin.mongosqld` either with a schema file in
 :doc:`.drdl format </schema-configuration>` using the
-:option:`--schema` option or by sampling data from a MongoDB instance
-to create the schema.
+:option:`--schema <mongosqld --schema>` option or by sampling data
+from a MongoDB instance to create the schema.
 
 You can specify which namespace or namespaces to sample data from with
-the :option:`--sampleNamespaces` option. If you don't specify any
-namespaces or a schema file, :program:`mongosqld` samples data from all
+the :option:`--sampleNamespaces <mongosqld --sampleNamespaces>`
+option. If you don't specify any
+namespaces or a schema file, :binary:`~bin.mongosqld` samples data from all
 databases in the target MongoDB instance except the ``admin`` and
 ``local`` databases.
 
 You can specify a database in which to store schema information with
-the :option:`--sampleSource` option. Otherwise, :program:`mongosqld`
-holds the schema in memory.
+the :option:`--schemaSource <mongosqld --schemaSource>`
+option. Otherwise, :binary:`~bin.mongosqld` holds the schema in memory.
 
 Starting ``mongosqld`` with a Schema File
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Use the :option:`--schema` option to specify a schema file when
-starting :program:`mongosqld`.
+Use the :option:`--schema <mongosqld --schema>` option to
+specify a schema file when starting :binary:`~bin.mongosqld`.
 
 .. code-block:: shell
 
    mongosqld --schema /path/to/schema-file.drdl
 
-Use :program:`mongodrdl` to create a schema file from a MongoDB
+Use :binary:`~bin.mongodrdl` to create a schema file from a MongoDB
 instance.
 
 Starting ``mongosqld`` with a Schema Database
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Use the :option:`--sampleSource` option to specify a database
-to store schema information.
+Use the :option:`--schemaSource <mongosqld --schemaSource>`
+option to specify a database to store schema information.
 
 .. code-block:: shell
 
-   mongosqld --sampleSource sampleDb
+   mongosqld --schemaSource sampleDb
 
 Starting ``mongosqld`` with Specified Namespaces
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Use the :option:`--sampleNamespaces` option to specify databases
-and collections for :program:`mongosqld` to sample data from to
+Use the :option:`--sampleNamespaces <mongosqld --sampleNamespaces>`
+option to specify databases and collections for
+:binary:`~bin.mongosqld` to sample data from to
 create the schema.
 
 .. include:: /includes/example-sampleNamespaces.rst
 
-See additional :ref:`usage examples <usage-examples>` below.
+See additional :ref:`usage examples <mongosqld-usage-examples>` below.
+
+.. _user-permissions:
+
+MongoDB User Permissions
+------------------------
+
+.. include:: /includes/user-permissions.rst
+
+For more information on MongoDB
+users and roles, see
+:manual:`Role-Based Access Control </core/authorization>`.
+
+See the :ref:`example <mongosqld-auth-example>` below of
+:binary:`~bin.mongosqld` with authentication.
+
+Default Minimum TLS Version
+---------------------------
+
+.. versionadded:: 2.6
+
+The default minimum TLS version is 1.1 for all client connections.
+This includes incoming client connections to :binary:`~bin.mongosqld`
+and outgoing connections to MongoDB.
+
+You can adjust this setting for incoming connections with the
+:option:`--minimumTLSVersion <mongosqld --minimumTLSVersion>` option
+and for outgoing connections with the
+:option:`--mongo-minimumTLSVersion
+<mongosqld --mongo-minimumTLSVersion>` option.
 
 .. _mongosqld-command-line-options:
 
@@ -105,11 +136,19 @@ Core Options
 
 .. include:: /includes/option/option-mongosqld-mongo-uri.rst
 
-.. include:: /includes/option/option-mongosqld-mongo-versioncompatibility.rst
+.. include:: /includes/option/option-mongosqld-mongo-versionCompatibility.rst
 
 .. include:: /includes/option/option-mongosqld-maxVarcharLength.rst
 
-.. _msqld-log-options:
+.. include:: /includes/option/option-mongosqld-mongo-username.rst
+
+.. include:: /includes/option/option-mongosqld-mongo-password.rst
+
+.. include:: /includes/option/option-mongosqld-mongo-authenticationSource.rst
+
+.. include:: /includes/option/option-mongosqld-mongo-authenticationMechanism.rst
+
+.. _msqld-schema-options:
 
 Schema Options
 ~~~~~~~~~~~~~~
@@ -120,15 +159,21 @@ Schema Options
 
 .. include:: /includes/option/option-mongosqld-sampleNamespaces.rst
 
-.. include:: /includes/option/option-mongosqld-sampleSource.rst
+.. include:: /includes/option/option-mongosqld-schemaMode.rst
+
+.. include:: /includes/option/option-mongosqld-schemaSource.rst
+
+.. include:: /includes/option/option-mongosqld-schemaName.rst
 
 .. include:: /includes/option/option-mongosqld-sampleSize.rst
 
-.. include:: /includes/option/option-mongosqld-sampleMode.rst
-
-.. include:: /includes/option/option-mongosqld-sampleRefreshIntervalSecs.rst
+.. include:: /includes/option/option-mongosqld-schemaRefreshIntervalSecs.rst
 
 .. include:: /includes/option/option-mongosqld-uuidSubtype3Encoding.rst
+
+.. include:: /includes/option/option-mongosqld-prejoin.rst
+
+.. _msqld-log-options:
 
 Log Options
 ~~~~~~~~~~~
@@ -164,6 +209,8 @@ MongoDB TLS/SSL Options
 
 .. include:: /includes/option/option-mongosqld-mongo-sslFIPSMode.rst
 
+.. include:: /includes/option/option-mongosqld-mongo-minimumTLSVersion.rst
+
 .. _msqld-client-tls-options:
 
 Client TLS/SSL Options
@@ -189,6 +236,30 @@ Client TLS/SSL Options
 
 .. include:: /includes/option/option-mongosqld-defaultAuthMechanism.rst
 
+.. include:: /includes/option/option-mongosqld-minimumTLSVersion.rst
+
+Service Options
+~~~~~~~~~~~~~~~
+
+.. include:: /includes/option/option-mongosqld-serviceName.rst
+
+.. include:: /includes/option/option-mongosqld-serviceDisplayName.rst
+
+.. include:: /includes/option/option-mongosqld-serviceDescription.rst
+
+.. _kerberos-options:
+
+Kerberos Options
+~~~~~~~~~~~~~~~~
+
+.. include:: /includes/option/option-mongosqld-gssapiHostname.rst
+
+.. include:: /includes/option/option-mongosqld-gssapiServiceName.rst
+
+.. include:: /includes/option/option-mongosqld-mongo-gssapiServiceName.rst
+
+.. include:: /includes/option/option-mongosqld-gssapiConstrainedDelegation.rst
+
 .. _msqld-socket-options:
 
 Socket Options
@@ -200,12 +271,17 @@ Socket Options
 
 .. include:: /includes/option/option-mongosqld-unixSocketPrefix.rst
 
+Set Parameter Option
+~~~~~~~~~~~~~~~~~~~~
+
+.. include:: /includes/option/option-mongosqld-setParameter.rst
+
 .. _config-format:
 
 Configuration File
 ------------------
 
-You may configure :program:`mongosqld` using a `YAML <http://yaml.org/>`_
+You may configure :binary:`~bin.mongosqld` using a `YAML <http://yaml.org/>`_
 configuration file. This file may contain the settings listed in the
 following sections.
 
@@ -232,23 +308,23 @@ Logging Options
 
    * - .. setting:: systemLog.logAppend
      - boolean
-     - :option:`--logAppend`
+     - :option:`--logAppend <mongosqld --logAppend>`
 
    * - .. setting:: systemLog.logRotate
      - string
-     - :option:`--logRotate`
+     - :option:`--logRotate <mongosqld --logRotate>`
 
    * - .. setting:: systemLog.path
      - string
-     - :option:`--logPath`
+     - :option:`--logPath <mongosqld --logPath>`
 
    * - .. setting:: systemLog.quiet
      - boolean
-     - :option:`--quiet`
+     - :option:`--quiet <mongosqld --quiet>`
 
    * - .. setting:: systemLog.verbosity
      - integer
-     - :option:`--verbose`
+     - :option:`--verbose <mongosqld --verbose>`
 
 .. _msqld-conf-schema-options:
 
@@ -283,12 +359,15 @@ Data Sampling Options
 
    schema:
      sample:
-       mode: <[read|write]>
-       source: <string>
        size: <integer>
+       prejoin: <boolean>
        namespaces: <array of strings>
-       refreshIntervalSecs: <integer>
        uuidSubtype3Encoding: <[old|csharp|java]>
+     stored:
+       mode: <[custom|auto]>
+       source: <string>
+       name: <db-name>
+     refreshIntervalSecs: <integer>
 
 .. list-table::
    :header-rows: 1
@@ -297,29 +376,37 @@ Data Sampling Options
      - Type
      - Corresponds to
 
-   * - .. setting:: schema.sample.mode
+   * - .. setting:: schema.stored.mode
      - string
-     - :option:`--sampleMode`
+     - :option:`--schemaMode <mongosqld --schemaMode>`
 
-   * - .. setting:: schema.sample.source
+   * - .. setting:: schema.stored.source
      - string
-     - :option:`--sampleSource`
+     - :option:`--schemaSource  <mongosqld --schemaSource>`
+
+   * - .. setting:: schema.stored.name
+     - string
+     - :option:`--schemaName  <mongosqld --schemaName>`
 
    * - .. setting:: schema.sample.size
      - integer
-     - :option:`--sampleSize`
+     - :option:`--sampleSize <mongosqld --sampleSize>`
+
+   * - .. setting:: schema.sample.prejoin
+     - boolean
+     - :option:`--prejoin <mongosqld --prejoin>`
 
    * - .. setting:: schema.sample.namespaces
      - string or array of strings
-     - :option:`--sampleNamespaces`
+     - :option:`--sampleNamespaces <mongosqld --sampleNamespaces>`
 
-   * - .. setting:: schema.sample.refreshIntervalSecs
+   * - .. setting:: schema.refreshIntervalSecs
      - integer
-     - :option:`--sampleRefreshIntervalSecs`
+     - :option:`--schemaRefreshIntervalSecs <mongosqld --schemaRefreshIntervalSecs>`
 
    * - .. setting:: schema.sample.uuidSubtype3Encoding
      - string
-     - :option:`--uuidSubtype3Encoding`
+     - :option:`--uuidSubtype3Encoding <mongosqld --uuidSubtype3Encoding>`
 
 .. _msqld-conf-runtime-options:
 
@@ -331,8 +418,23 @@ Runtime Options
    runtime:
      memory:
        maxPerStage: <integer>
+       maxPerServer: <integer>
+       maxPerConnection: <integer>
+
+.. important::
+
+   |bi-short| provides the following options for controlling the amount
+   of system memory which the :binary:`~bin.mongosqld` process may use
+   for sending queries to MongoDB. These limits do not include the
+   memory which |bi-short| uses for other purposes, such as data
+   structure overhead, so the total amount of memory |bi-short|
+   uses will be higher than the limits set with these options.
 
 .. include:: /includes/option/setting-conf-runtime.memory.maxPerStage.rst
+
+.. include:: /includes/option/setting-conf-runtime.memory.maxPerServer.rst
+
+.. include:: /includes/option/setting-conf-runtime.memory.maxPerConnection.rst
 
 .. _msqld-conf-net-options:
 
@@ -349,6 +451,7 @@ Network Options
        pathPrefix: <string>
        filePermissions: <string>
      ssl:
+       mode: <string>
        allowInvalidCertificates: <boolean>
        PEMKeyFile: <string>
        PEMKeyPassword: <string>
@@ -392,6 +495,10 @@ Network Options
      - boolean
      - :option:`--sslAllowInvalidCertificates`
 
+   * - .. setting:: net.ssl.mode
+     - string
+     - :option:`--sslMode`
+
    * - .. setting:: net.ssl.PEMKeyFile
      - string
      - :option:`--sslPEMKeyFile`
@@ -404,6 +511,10 @@ Network Options
      - string
      - :option:`--sslCAFile`
 
+   * - .. setting:: net.ssl.minimumTLSVersion
+     - string
+     - :option:`--minimumTLSVersion`
+
 .. _msqld-conf-security-options:
 
 Security Options
@@ -415,6 +526,9 @@ Security Options
      enabled: <boolean>
      defaultMechanism: <string>
      defaultSource: <string>
+     gssapi:
+       hostname: <string>
+       serviceName: <string>
 
 .. list-table::
    :header-rows: 1
@@ -434,6 +548,18 @@ Security Options
    * - .. setting:: security.defaultSource
      - string
      - :option:`--defaultAuthSource`
+
+   * - .. setting:: security.gssapi.hostname
+     - string
+     - :option:`--gssapiHostname`
+
+   * - .. setting:: security.gssapi.serviceName
+     - string
+     - :option:`--gssapiServiceName`
+
+   * - .. setting:: security.gssapi.constrainedDelegation
+     - string
+     - :option:`--gssapiConstrainedDelegation`
 
 .. _msqld-conf-host-options:
 
@@ -455,6 +581,12 @@ MongoDB Host Options
          CAFile: <string>
          CRLFile: <string>
          FIPSMode: <boolean>
+       auth:
+         username: <username>
+         password: <password>
+         source: <auth-db-name>
+         mechanism: <auth-mechanism>
+         gssapiServiceName: <service>
 
 .. list-table::
    :header-rows: 1
@@ -465,43 +597,67 @@ MongoDB Host Options
 
    * - .. setting:: mongodb.versionCompatibility
      - string
-     - :option:`--mongo-versionCompatibility`
+     - :option:`--mongo-versionCompatibility <mongosqld --mongo-versionCompatibility>`
 
    * - .. setting:: mongodb.net.uri
      - string
-     - :option:`--mongo-uri`
+     - :option:`--mongo-uri <mongosqld --mongo-uri>`
 
    * - .. setting:: mongodb.net.ssl.enabled
      - boolean
-     - :option:`--mongo-ssl`
+     - :option:`--mongo-ssl <mongosqld --mongo-ssl>`
 
    * - .. setting:: mongodb.net.ssl.allowInvalidCertificates
      - boolean
-     - :option:`--mongo-sslAllowInvalidCertificates`
+     - :option:`--mongo-sslAllowInvalidCertificates <mongosqld --mongo-sslAllowInvalidCertificates>`
 
    * - .. setting:: mongodb.net.ssl.allowInvalidHostnames
      - boolean
-     - :option:`--mongo-sslAllowInvalidHostnames`
+     - :option:`--mongo-sslAllowInvalidHostnames <mongosqld --mongo-sslAllowInvalidHostnames>`
 
    * - .. setting:: mongodb.net.ssl.PEMKeyFile
      - string
-     - :option:`--mongo-sslPEMKeyFile`
+     - :option:`--mongo-sslPEMKeyFile <mongosqld --mongo-sslPEMKeyFile>`
 
    * - .. setting:: mongodb.net.ssl.PEMKeyPassword
      - string
-     - :option:`--mongo-sslPEMKeyPassword`
+     - :option:`--mongo-sslPEMKeyPassword <mongosqld --mongo-sslPEMKeyPassword>`
 
    * - .. setting:: mongodb.net.ssl.CAFile
      - string
-     - :option:`--mongo-sslCAFile`
+     - :option:`--mongo-sslCAFile <mongosqld --mongo-sslCAFile>`
 
    * - .. setting:: mongodb.net.ssl.CRLFile
      - string
-     - :option:`--mongo-sslCRLFile`
+     - :option:`--mongo-sslCRLFile <mongosqld --mongo-sslCRLFile>`
 
    * - .. setting:: mongodb.net.ssl.FIPSMode
      - boolean
-     - :option:`--mongo-sslFIPSMode`
+     - :option:`--mongo-sslFIPSMode <mongosqld --mongo-sslFIPSMode>`
+
+   * - .. setting:: mongodb.net.ssl.minimumTLSVersion
+     - string
+     - :option:`--mongo-minimumTLSVersion`
+
+   * - .. setting:: mongodb.net.auth.username
+     - string
+     - :option:`--mongo-username <mongosqld --mongo-username>`
+
+   * - .. setting:: mongodb.net.auth.password
+     - string
+     - :option:`--mongo-password <mongosqld --mongo-password>`
+
+   * - .. setting:: mongodb.net.auth.source
+     - string
+     - :option:`--mongo-authenticationSource <mongosqld --mongo-authenticationSource>`
+
+   * - .. setting:: mongodb.net.auth.mechanism
+     - string
+     - :option:`--mongo-authenticationMechanism  <mongosqld --mongo-authenticationMechanism>`
+
+   * - .. setting:: mongodb.net.auth.gssapiServiceName
+     - string
+     - :option:`--mongo-gssapiServiceName`
 
 .. _msqld-conf-proc-options:
 
@@ -525,17 +681,92 @@ Process Management Options
 
    * - .. setting:: processManagement.service.name
      - string
-     - :option:`--serviceName`
+     - :option:`--serviceName <mongosqld --serviceName>`
 
    * - .. setting:: processManagement.service.displayName
      - string
-     - :option:`--serviceDisplayName`
+     - :option:`--serviceDisplayName <mongosqld --serviceDisplayName>`
 
    * - .. setting:: processManagement.service.description
      - string
-     - :option:`--serviceDescription`
+     - :option:`--serviceDescription <mongosqld --serviceDescription>`
 
-.. _usage-examples:
+Set Parameter Options
+~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: sh
+
+   setParameter:
+     polymorphic_type_conversion_mode: <string>
+     type_conversion_mode: <string>
+
+.. list-table::
+   :header-rows: 1
+   :widths: 60 10 30
+
+   * - Name
+     - Type
+     - Corresponds to
+
+   * - .. setting:: setParameter.polymorphic_type_conversion_mode
+     - string
+     - .. include:: /includes/fact-polymorphic-type-conversion-mode.rst
+
+   * - .. setting:: setParameter.type_conversion_mode
+     - string
+     - .. include:: /includes/fact-type-conversion-mode.rst
+
+These configuration file options are also available as system variables.
+For more information, see
+:ref:`System Variables <system-environment-variables>`.
+
+Example Configuration File
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. note::
+
+   The paths used in this example configuration file are
+   Linux-specific. Check your local system documentation to
+   determine the correct paths for your system.
+
+.. class:: copyable-code
+
+.. code-block:: yaml
+
+   systemLog:
+     logAppend: false
+     path: "/var/log/mongosqld/mongosqld.log"
+     verbosity: 2
+
+   security:
+     enabled: true
+
+   mongodb:
+     net:
+       uri: "mongo.example.com:27017"
+       auth:
+         username: "root"
+         password: "changeme"
+
+   net:
+     bindIp: 192.0.2.14
+     port: 3307
+     ssl:
+       mode: "allowSSL"
+       PEMKeyFile: "/vagrant/certificates/mongosqld-server.pem"
+       CAFile: "/vagrant/certificates/ca.crt"
+
+   schema:
+     sample:
+       namespaces: "inventory.*"
+
+   processManagement:
+     service:
+       name: mongosqld
+       displayName: mongosqld
+       description: "BI Connector SQL proxy server"
+
+.. _mongosqld-usage-examples:
 
 Usage Examples
 --------------
@@ -543,8 +774,8 @@ Usage Examples
 ``mongosqld`` with a Schema File
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Use the :option:`--schema` option to specify a
-:doc:`schema file </schema-configuration>` for :program:`mongosqld`
+Use the :option:`--schema <mongosqld --schema>` option to specify a
+:doc:`schema file </schema-configuration>` for :binary:`~bin.mongosqld`
 to use.
 
 .. code-block:: shell
@@ -556,9 +787,11 @@ to use.
 Specify a Collection to Sample
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Use the :option:`--sampleNamespaces` option to specify a database
-and collection for :program:`mongosqld` to sample data from. If you
-start :program:`mongosqld` without the :option:`--sampleNamespaces`
+Use the :option:`--sampleNamespaces <mongosqld --sampleNamespaces>`
+option to specify a database
+and collection for :binary:`~bin.mongosqld` to sample data from. If you
+start :binary:`~bin.mongosqld` without the
+:option:`--sampleNamespaces <mongosqld --sampleNamespaces>`
 option, it samples data from all available databases except
 the ``admin`` and ``local`` databases.
 
@@ -571,7 +804,7 @@ Specify Multiple Collections to Sample
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To sample data from all the collections in a database, use the
-:option:`--sampleNamespaces` option with a wildcard (``*``).
+:option:`--sampleNamespaces <mongosqld --sampleNamespaces>` option with a wildcard (``*``).
 
 The following example samples data from all the collections in a
 database named ``inventory``:
@@ -580,7 +813,7 @@ database named ``inventory``:
 
    mongosqld --sampleNamespaces 'inventory.*'
 
-You can repeat the :option:`--sampleNamespaces` at the command line to
+You can repeat the :option:`--sampleNamespaces  <mongosqld --sampleNamespaces>` at the command line to
 sample data from multiple collections within a database, or from
 multiple collections across several databases.
 
@@ -593,7 +826,7 @@ databases named ``cars`` and ``boats``:
              --sampleNamespaces 'boats.*' \
 
 You can mix and match wildcards and specific collections with multiple
-:option:`--sampleNamespaces` options.
+:option:`--sampleNamespaces <mongosqld --sampleNamespaces>` options.
 
 The following example samples data from all collections in a database
 named ``orders``, as well as the ``FY2015`` and
@@ -610,44 +843,114 @@ named ``orders``, as well as the ``FY2015`` and
    It is only necessary to enclose the namespace in single quotes
    when you use a wildcard.
 
-Specify a Database to Persist a Schema
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. _sampling-exclusion:
 
-Use the :option:`--sampleSource` option to specify a database
-in which to store schema information. Use the
-:option:`--sampleMode` option to specify whether
-:program:`mongosqld` can write to the schema database or only
-read from it.
+Exclude Databases and Collections from Sampling
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The following example uses the ``sampleDb`` database to store schema
-information and sets :option:`--sampleMode` to ``write``.
+To exclude specified namespaces from the data sampling process, precede
+the namespace with a ``~`` (tilde) character. The following example
+includes all databases and collections except the ``apples`` collection
+in the ``fruit`` database:
 
 .. code-block:: shell
 
-   mongosqld --sampleSource sampleDb \
-             --sampleMode write
+   mongosqld --sampleNamespaces ~fruit.apples
+
+Use the ``*`` wildcard character to indicate all collections in a
+database. The following example excludes the entire ``vehicles``
+database from data sampling:
+
+.. code-block:: shell
+
+   mongosqld --sampleNamespaces '~vehicles.*'
+
+.. _sample-size-0:
+
+Sample All Documents in a Collection
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If you have a collection in which some documents have different
+fields from others and you want to ensure that the schema takes them
+all into consideration, set the :option:`--sampleSize <mongosqld
+--sampleSize>` option to ``0``. This causes :binary:`~bin.mongosqld`
+to examine all documents in the specified :option:`namespace
+<mongosqld --sampleNamespaces>` when it builds its schema.
+
+The following example instructs :binary:`~bin.mongosqld` to build the
+schema based on all documents in the ``inventory.electronics``
+namespace.
+
+.. code-block:: shell
+
+   mongosqld --sampleNamespaces inventory.electronics \
+             --sampleSize 0
+
+Specify a Database to Persist a Schema
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Use the :option:`--schemaSource <mongosqld --schemaSource>` option to
+specify a database in which to store schema information. Use the
+:option:`--schemaMode <mongosqld --schemaMode>` option to specify
+whether :binary:`~bin.mongosqld` can write to the schema database or
+only read from it.
+
+.. include:: /includes/schemaSource-example.rst
+
+.. include:: /includes/fact-samplemode-write-permission.rst
 
 Specify a Data Resampling Interval
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Use the :option:`--sampleRefreshIntervalSecs` option to specify
-an interval in seconds for :program:`mongosqld` to resample data and
-regenerate the schema. The default value for this option is ``0``,
-which means that :program:`mongosqld` never resamples data.
+Use the :option:`--schemaRefreshIntervalSecs <mongosqld
+--schemaRefreshIntervalSecs>` option to specify
+an interval in seconds for :binary:`~bin.mongosqld` to resample data
+and regenerate the schema. The default value for this option is ``0``,
+which means that :binary:`~bin.mongosqld` never resamples data.
 
 If you set a resampling interval with
-:option:`--sampleRefreshIntervalSecs` and you specify a schema
-database with :option:`--sampleSource`, you cannot set
-:option:`--sampleMode` to ``read``.
+:option:`--schemaRefreshIntervalSecs <mongosqld
+--schemaRefreshIntervalSecs>` and you specify a schema
+database with :option:`--schemaSource  <mongosqld --schemaSource>`, you
+cannot set :option:`--schemaMode  <mongosqld --schemaMode>` to ``custom``.
 
 The following example does not specify a schema database or a schema
 file, so it holds its schema in memory. It uses
-:option:`--sampleRefreshIntervalSecs` to specify a data resampling
+:option:`--schemaRefreshIntervalSecs <mongosqld
+--schemaRefreshIntervalSecs>` to specify a data resampling
 interval of 3600 seconds.
 
 .. code-block:: shell
 
-   mongosqld --sampleRefreshIntervalSecs 3600
+   mongosqld --schemaRefreshIntervalSecs 3600
+
+.. _mongosqld-auth-example:
+
+``mongosqld`` with Authentication Enabled
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To connect :binary:`~bin.mongosqld` to a MongoDB instance running
+with :manual:`authentication </core/authentication>` enabled,
+use the :option:`--auth <mongosqld --auth>` option and provide MongoDB user
+credentials.
+
+The following example starts :binary:`~bin.mongosqld` with
+credentials for a user named ``reportsUser`` with password
+``reportsPass``, who has access to the ``reports.inventory``
+namespace.
+
+.. code-block:: shell
+
+   mongosqld --auth \
+             --mongo-username reportsUser \
+             --mongo-password reportsPass \
+             --sampleNamespaces reports.inventory
+
+This example does not specify an authenticating database with the
+:option:`--mongo-authenticationSource <mongosqld --mongo-authenticationSource>` option, so it defaults to
+``admin``. It does not specify an authentication mechanism with the
+:option:`--mongo-authenticationMechanism <mongosqld --mongo-authenticationMechanism>` option, so it defaults to
+``SCRAM-SHA-1``.
 
 ``mongosqld`` with a Configuration File
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -668,16 +971,16 @@ you may save a file such as the following to ``/etc/mongosqld.conf``:
    schema:
      path: /var/schema.drdl
 
-You may then start :program:`mongosqld` with the :option:`--config`
-option:
+You may then start :binary:`~bin.mongosqld` with the
+:option:`--config <mongosqld --config>` option:
 
 .. code-block:: sh
 
    mongosqld --config /etc/mongosqld.conf
 
 For more information on starting ``mongosqld`` as a system service, see
-the :ref:`BI Connector installation reference
-<start-mongosqld-system-service>`.
+the :ref:`Installation Guide <installation-guides>` for your operating
+system.
 
 Usage with Atlas
 ~~~~~~~~~~~~~~~~
@@ -696,12 +999,11 @@ default.
    write data as temporary files to disk. To review the MongoDB Atlas free
    tier constraints, see the `MongoDB Atlas manual   <https://docs.atlas.mongodb.com/create-new-cluster/#service-m0-free-tier-limitations>`_.
 
-To connect the
-`MongoDB Connector for BI <https://www.mongodb.com/download-center?jmp=tbl#bi-connector>`_
-to an Atlas cluster, you must provide :program:`mongosqld` with a
+To connect the {+download-center-bi+}
+to an Atlas cluster, you must provide :binary:`~bin.mongosqld` with a
 ``.pem`` key file.
 
-:program:`mongosqld` can use any valid TLS certificate issued by a
+:binary:`~bin.mongosqld` can use any valid TLS certificate issued by a
 certificate authority, or a self-signed certificate. If you use a
 self-signed certificate, although the communications channel will be
 encrypted, there will be no validation of server identity. Although
@@ -719,8 +1021,9 @@ using the ``openssl`` tool:
    openssl req -nodes -newkey rsa:2048 -keyout test.key -out test.crt -x509 -days 365 -subj "/C=US/ST=test/L=test/O=test Security/OU=IT Department/CN=test.com"
    cat test.crt test.key > test.pem
 
-Start :program:`mongosqld` with the :option:`--auth` and
-:option:`--sslPEMKeyFile` options.
+Start :binary:`~bin.mongosqld` with the :option:`--auth
+<mongosqld --auth>` and :option:`--sslPEMKeyFile
+<mongosqld --sslPEMKeyFile>` options.
 
 If you named your key file ``test.pem`` as in the previous example, you
 can run the following, substituting your :ref:`schema file <drdl>` and
@@ -732,10 +1035,15 @@ cluster URI:
 .. class:: copyable-code
 .. code-block:: sh
 
-   mongosqld --mongo-ssl --auth --sslPEMKeyFile test.pem --schema <schema.drdl> --mongo-uri <uri>
+   mongosqld --mongo-ssl \
+             --auth \
+             --sslPEMKeyFile test.pem \
+             --schema <schema.drdl> \
+             --mongo-uri <uri> \
+             --sslMode allowSSL
 
 Pass your username, password, and authentication database to your SQL
-client. For example, using ``mysql`` without verifying your :program:`mongosqld`
+client. For example, using ``mysql`` without verifying your :binary:`~bin.mongosqld`
 server certificate:
 
 .. class:: copyable-code
@@ -745,3 +1053,102 @@ server certificate:
 
 Refer to :doc:`/connect/mysql` for more details on using the
 ``mysql`` client with the |bi-short|.
+
+.. _sampling-mode-chart:
+
+Sampling Mode Reference Chart
+-----------------------------
+
+The chart below describes types of :binary:`~bin.mongosqld`
+startup configurations and the :ref:`options <msqld-core-options>` used
+with each.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 15 35 40
+
+   * - Mode
+     - ``mongosqld`` Options
+     - Behavior
+
+   * - Standalone Schema
+     - - :option:`--schemaMode <mongosqld --schemaMode>` *not used*
+       - :option:`--schemaSource <mongosqld --schemaSource>` *not used*
+     - :binary:`~bin.mongosqld` samples data upon startup. If
+       :option:`--schemaRefreshIntervalSecs
+       <mongosqld --schemaRefreshIntervalSecs>` > 0, resample
+       at specified interval.
+
+       .. example::
+
+          .. code-block:: sh
+
+             mongosqld --schemaRefreshIntervalSecs 3600
+
+       For more information, see :ref:`bi-cached-sampling`.
+
+   * - Custom Schema
+     - - :option:`--schemaMode <mongosqld --schemaMode>` ``custom``
+       - :option:`--schemaSource <mongosqld --schemaSource>` <dbName>
+       - :option:`--schemaRefreshIntervalSecs <mongosqld --schemaRefreshIntervalSecs>` *not used*
+     - Read schema data from the database specified by
+       :option:`--schemaSource <mongosqld --schemaSource>`.
+
+       .. example::
+
+          .. code-block:: sh
+
+             mongosqld --schemaMode custom \
+                       --schemaSource schemaDb
+
+   * - Auto Schema
+     - - :option:`--schemaMode <mongosqld --schemaMode>` ``auto``
+       - :option:`--schemaSource <mongosqld --schemaSource>` <dbName>
+       - :option:`--schemaRefreshIntervalSecs  <mongosqld --schemaRefreshIntervalSecs>` > 0
+     - Sample and persist schema data in a user-specified schema
+       database.
+
+       .. example::
+
+          .. code-block:: sh
+
+              mongosqld --schemaMode auto \
+                        --schemaSource schemaDb \
+                        --schemaRefreshIntervalSecs 3600
+
+       For more information, see :ref:`bi-persistent-schema`.
+
+Invalid Configurations
+~~~~~~~~~~~~~~~~~~~~~~
+
+The following :binary:`~bin.mongosqld` option configurations are invalid
+and cause an error at startup.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 15 35 40
+
+   * - Mode
+     - ``mongosqld`` Options
+     - Behavior
+
+   * - Standalone Writer (**invalid**)
+     - - :option:`--schemaMode <mongosqld --schemaMode>` ``auto``
+       - :option:`--schemaSource <mongosqld --schemaSource>` *not used*
+     - This configuration is invalid for a :manual:`standalone
+       </reference/glossary/#term-standalone>`
+       :binary:`~bin.mongod` instance because in ``auto`` mode there
+       must be a writeable database specified.
+
+   * - Clustered Sampling Reader (**invalid**)
+     - - :option:`--schemaMode <mongosqld --schemaMode>` ``custom``
+       - :option:`--schemaSource <mongosqld --schemaSource>` <dbName>
+       - :option:`--schemaRefreshIntervalSecs <mongosqld --schemaRefreshIntervalSecs>` > 0
+     - When used in a MongoDB :manual:`replica set
+       </replication/>` or :manual:`sharded cluster </sharding>`,
+       this configuration is invalid. When a
+       database is specified for storing schema data with
+       :option:`--schemaSource <mongosqld --schemaSource>`, :option:`--schemaMode <mongosqld --schemaMode>` must be set to
+       ``auto`` so that the schema may be updated from
+       the :manual:`primary </core/replica-set-primary/>` to
+       maintain cluster-wide consistency.

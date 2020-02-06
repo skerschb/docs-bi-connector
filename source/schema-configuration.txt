@@ -1,17 +1,8 @@
-================================
-Schema Generation and Management
-================================
+=================================
+Map Relational Schemas to MongoDB
+=================================
 
 .. default-domain:: mongodb
-
-.. contents:: On this page
-   :local:
-   :backlinks: none
-   :depth: 1
-   :class: singlecol
-
-Overview
---------
 
 Business intelligence tools connect to a data source and, given a fixed
 tabular schema, allow users to visually explore their data.
@@ -23,74 +14,91 @@ To use MongoDB with a relational business intelligence tool such as
 mapping for your MongoDB data. |bi| provides several methods for
 creating and managing a relational schema.
 
-|bi-short|'s proxy server, :program:`mongosqld`, has startup options
-which determine how it handles schema management. These are covered in
-detail in the :program:`mongosqld` usage documentation.
+For complete documentation on |bi-short|'s schema management options,
+see the :binary:`~bin.mongosqld` reference documentation.
 
-Cached Sampling
----------------
+:ref:`bi-cached-sampling`
+-------------------------------------------
 
-*New in version 2.3:*
+.. container:: admonition
 
-When :program:`mongosqld` starts up, it can sample documents on
-a MongoDB instance to generate a relational representation of the
-schema, which it caches in memory. This is the default mode, which
-:program:`mongosqld` uses unless you specify a schema file with
-the :option:`--schema` option or a schema database with the
-:option:`--sampleSource` option.
+   The default sampling mode which :binary:`~bin.mongosqld` uses to
+   analyze your collections and derive a static schema. In this mode,
+   :binary:`~bin.mongosqld` derives the schema on startup and holds the
+   schema in memory.
+   
+:ref:`bi-persistent-schema`
+---------------------------------------------------------
 
-You can configure :program:`mongosqld` to automatically resample on a
-fixed schedule with the :option:`--sampleRefreshIntervalSecs`
-option. If you do not specify a resampling interval,
-:program:`mongosqld` uses its initial schema for as long as the
-process runs.
+.. container:: admonition
 
-If you need to manually edit your schema to ensure correct
-representation of your data, you can use a
-:ref:`schema file <schema-with-drdl-file>` instead.
+   :binary:`~bin.mongosqld` samples your MongoDB collections and
+   creates a schema at the time of startup and writes it to a
+   MongoDB collection. Available via the :option:`--schemaSource
+   <mongosqld --schemaSource>` option.
 
-Persist a Schema in MongoDB
----------------------------
+:ref:`Use MongoDB Views <schema-with-views>`
+--------------------------------------------
 
-The :option:`--sampleSource` option directs :program:`mongosqld` to
-use a particular database for schema storage. :program:`mongosqld`
-can either create a new database to use for schema storage or use
-an existing database.
+.. container:: admonition
 
-If you specify an existing database which has been used previously
-for schema storage, the :option:`--sampleMode` option determines
-whether :program:`mongosqld` writes new schema data to the specified
-database or only reads from it. If you specify a database which
-doesn't currently exist, you must set :option:`--sampleMode` to
-``write``.
+   :manual:`MongoDB views </core/views/>` allow you to control the
+   display of information from a collection by restricting access
+   to certain fields, renaming fields, sorting data, and other
+   techniques. |bi-short| can read data from a view just as it does
+   from a standard collection.
 
-The :option:`--sampleRefreshIntervalSecs`
-option determines how frequently :program:`mongosqld` resamples data
-to update the schema.
+:ref:`Load a Schema from a DRDL File <schema-with-drdl-file>`
+-------------------------------------------------------------
 
-.. _schema-with-drdl-file:
+.. container:: admonition
 
-Load a Schema from a DRDL File
-------------------------------
+  You can generate a text schema for :binary:`~bin.mongosqld` to use
+  with the :binary:`~bin.mongodrdl` program. You can edit a text
+  schema manually to suit your particular data needs.
 
-The :option:`--schema` option allows you to specify a schema file
-for :program:`mongosqld` to use.
+:ref:`Resample Schema Data with "FLUSH SAMPLE" <resample-schema-data>`
+----------------------------------------------------------------------
 
-The schema generation tool :program:`mongodrdl` outputs a schema file
-in :ref:`Document Relational Definition Language <drdl>` (DRDL)
-format, but you should verify that the schema it proposes matches your
-data requirements. Examine both the table structure and field types
-to ensure that you can generate your intended reports.
+.. container:: admonition
 
-It is possible to manually edit the schema
-definition files to perform the following actions:
+   If the data in your MongoDB instance changes shape significantly
+   with new fields or collections, you may wish to regenerate the
+   schema |bi-short| uses. You can regenerate the schema either by
+   restarting :binary:`~bin.mongosqld` or by issuing the "FLUSH
+   SAMPLE" command from within the MySQL shell.
 
-- Add :ref:`aggregation pipeline <aggregation-pipeline>` stages
-- Add fields that :program:`mongodrdl` did not discover within
-  the subset of documents that it sampled
-- Remove fields
-- Remove tables
-- Rename tables, so long as the ``collection`` field remains the same
-- Rename fields using the ``sqlname`` option
+:ref:`Geospatial Data <geospatial-data>`
+----------------------------------------
 
-.. include:: /includes/fact-restart-mongosqld.rst
+.. container:: admonition
+
+  |bi-short| handles collections which contain a ``2d`` or ``2dsphere``
+  :manual:`geospatial index </applications/geospatial-indexes>` such
+  that longitude and latitude data are represented within a single
+  table along with other collection data.
+
+:ref:`type-conflict-resolution`
+-------------------------------
+
+.. container:: admonition
+
+   Relational databases do not allow dynamically typed columns so when
+   the |bi-short| samples data from MongoDB to generate a schema, type
+   conversion conflicts may occur. See this page for more information
+   on how the |bi-short| resolves these conflicts and displays data
+   when conflicts are present.
+
+.. class:: hidden
+
+   .. toctree::
+      :titlesonly:
+
+      /schema/cached-sampling
+      /schema/persist-schema
+      /schema/use-views
+      /schema/load-schema-from-drdl
+      /schema/resample-schema
+      /schema/geospatial-data
+      /schema/type-conflicts
+      /schema/schema-management-changes

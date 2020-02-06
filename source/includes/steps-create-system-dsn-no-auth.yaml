@@ -1,78 +1,45 @@
-title: Start the Microsoft ODBC Sources program as user administrator.
-ref: start-ms-odbc
+ref: start-odbc-no-auth
 level: 4
 stepnum: 1
-content: |
-   To run the program as administrator, right
-   click on the application icon and select "Run
-   as administrator").
+source:
+  file: steps-create-system-dsn.yaml
+  ref: start-odbc
 ---
-title: Select the ``System DSN`` tab.
-ref: select-system-dsn
+ref: select-tab-no-auth
 level: 4
 stepnum: 2
-content: |
+source:
+  file: steps-create-system-dsn.yaml
+  ref: select-tab
 ---
-title: Click the ``Add`` button.
-ref: click-add-button
+ref: click-add-no-auth
 level: 4
 stepnum: 3
-content: |
-   .. figure:: /images/bi-connector/windows-odbc-administrator.png
-      :alt: Screenshot of the Windows ODBC Administrator application
-      :figwidth: 550px
+source:
+  file: steps-create-system-dsn.yaml
+  ref: click-add
 ---
-title: Select ``MySQL ODBC ANSI Driver`` from the list of available drivers.
-ref: select-mysql-odbc
+ref: select-odbc-no-auth
 level: 4
 stepnum: 4
-content: |
+source:
+  file: steps-create-system-dsn.yaml
+  ref: select-odbc
 ---
-title: Fill in the necessary form fields.
-ref: 
+ref: form-fields-no-auth
 level: 4
 stepnum: 5
-content: |
-   The following form fields are required:
-
-   .. list-table::
-      :header-rows: 1
-      :widths: 30 70
-
-      * - Field Name
-        - Description
-
-      * - :guilabel:`Data Source Name`
-        - A name of your choice.
-
-      * - :guilabel:`TCP/IP Server`
-        - Address of the server where your
-          :program:`mongosqld` process is running.
-
-      * - :guilabel:`Port`
-        - Port number of your :program:`mongosqld`
-          process.
-
-   .. note::
-
-      The following example configuration assumes the following:
-
-      - A :program:`mongosqld` instance running on ``localhost`` port
-        ``3307``.
-
-   The values you enter for your setup may be different.
-
-   .. figure:: /images/bi-connector/windows-odbc-dsn-no-auth.png
-      :alt: Screenshot of the Windows ODBC Administrator application
-      :figwidth: 550px
+source:
+  file: steps-create-system-dsn.yaml
+  ref: form-fields
 ---
-title: Click the ``Test`` button to test the ODBC connection.
-ref: click-test-button
+ref: click-test-no-auth
 level: 4
 stepnum: 6
+source:
+  file: steps-create-system-dsn.yaml
+  ref: click-test
 content: |
    If the connection is successful, click :guilabel:`OK` to add the
-   System DSN. If the connection fails, check to make sure your
-   :program:`mongosqld` process is running and that it does not
-   have authentication enabled.
+   :abbr:`DSN (Data Source Name)`.
 ...

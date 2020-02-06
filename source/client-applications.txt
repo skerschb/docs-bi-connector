@@ -1,0 +1,90 @@
+================
+Connect BI Tools
+================
+
+.. default-domain:: mongodb
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 1
+   :class: singlecol
+
+Certified Partner Tools
+-----------------------
+
+- `Tableau Desktop <https://www.tableau.com/products/desktop>`_
+
+- `Microsoft Power BI <https://powerbi.microsoft.com/en-us/>`_
+
+- `IBM Cognos Analytics <https://www.ibm.com/products/cognos-analytics>`_
+
+- `Qlik Sense <https://www.qlik.com/us/products/qlik-sense>`_
+
+- `Looker <https://looker.com/product/business-intelligence>`_
+
+Connection Tutorials
+--------------------
+
+You can connect to the |bi-short| using any of these Business
+Intelligence tools.
+
+.. card-group::
+   :type: large
+
+   cards:
+
+   - id: microstrategy
+     headline: Microstrategy
+     image: /images/bi-connector/cards/microstrategy-card.png
+     link: https://docs.mongodb.com/bi-connector/current/connect/microstrategy
+
+   - id: tableau-desktop
+     headline: Tableau Desktop
+     image: /images/bi-connector/cards/tableau-card.png
+     link: https://docs.mongodb.com/bi-connector/current/connect/tableau
+
+   - id: microsoft-powerbi
+     headline: Microsoft PowerBI
+     image: /images/bi-connector/cards/power-bi-card.png
+     link: https://docs.mongodb.com/bi-connector/current/connect/powerbi
+
+   - id: qliksense
+     headline: QlikSense
+     image: /images/bi-connector/cards/qliksense-card.png
+     link: https://docs.mongodb.com/bi-connector/current/connect/qlik
+
+   - id: microsoft-excel
+     headline: Microsoft Excel
+     image: /images/bi-connector/cards/excel-card.png
+     link: https://docs.mongodb.com/bi-connector/current/connect/excel
+
+   - id: spotfire-cloud
+     headline: Spotfire Cloud
+     image: /images/bi-connector/cards/spotfire-card.png
+     link: https://docs.mongodb.com/bi-connector/current/connect/spotfire-cloud
+
+   - id: mysql-client
+     headline: MySQL Client
+     image: /images/bi-connector/cards/mysql-card.png
+     link: https://docs.mongodb.com/bi-connector/current/connect/mysql
+
+   - id: looker
+     headline: Looker
+     image: /images/bi-connector/cards/looker-card.png
+     link: https://docs.mongodb.com/bi-connector/current/connect/looker
+
+
+.. class:: hidden
+
+   .. toctree::
+      :titlesonly:
+
+      /connect/excel
+      /connect/mysql
+      /connect/tableau
+      /connect/qlik
+      /connect/microstrategy
+      /connect/powerbi
+      /connect/spotfire-cloud
+      /connect/looker

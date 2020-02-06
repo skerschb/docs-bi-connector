@@ -25,16 +25,82 @@ Description
 
 .. include:: /includes/fact-bi-enterprise.rst
 
-:program:`mongodrdl` produces a schema based on contents of one or more
-MongoDB :term:`collections <collection>` and writes them out into
-``.drdl`` files understood by :program:`mongosqld`.
+``mongodrdl`` is a relational schema management tool for the |bi|. The
+``mongodrdl`` binary can:
 
-For details on the ``.drdl`` format, see :doc:`/schema-configuration`.
+- :commandoption:`Produce a schema <sample>` based on the contents of
+  one or more MongoDB :term:`collections <collection>` and write them
+  out into ``.drdl`` files used by :binary:`~bin.mongosqld`.
+
+- :commandoption:`Upload <upload>` a ``.drdl`` file's schema to the
+  MongoDB deployment your |bi-short| is reading from.
+
+- :commandoption:`Download <download>` stored schemas from your MongoDB
+  deployment.
+
+- :commandoption:`Delete <delete>` stored schemas from your MongoDB
+  deployment.
+
+- :commandoption:`Name <name-schema>` stored schemas in your MongoDB
+  deployment for easier management.
+
+You can edit a ``.drdl`` file manually to customize the |bi-short|'s
+schema. To learn more about the ``.drdl`` format and manually editing
+``.drdl`` files, see :ref:`schema-with-drdl-file`.
+
+To learn more about all |bi-short| schema management options,
+see :doc:`/schema-configuration`.
 
 .. include:: /includes/fact-restart-mongosqld.rst
 
-Command Line Options
---------------------
+Syntax
+------
+
+``mongodrdl`` uses the following syntax:
+
+.. code-block:: sh
+
+   mongodrdl [<command>] [<options...>]
+
+
+Default Minimum TLS Version
+---------------------------
+
+.. versionadded:: 2.6
+
+The default minimum TLS version is 1.1 for outgoing connections
+from :binary:`~bin.mongodrdl` to MongoDB.
+
+You can adjust this setting with the :option:`--minimumTLSVersion
+<mongodrdl --minimumTLSVersion>` option.
+
+Commands
+--------
+
+.. versionadded:: 2.11
+
+The behavior of ``mongodrdl`` is determined by one of the
+following commands. If no command is specified, ``mongodrdl``
+samples the specified namespace.
+
+.. include:: /includes/option/commandoption-mongodrdl-sample.rst
+
+.. include:: /includes/option/commandoption-mongodrdl-list-schema-ids.rst
+
+.. include:: /includes/option/commandoption-mongodrdl-list-schema-names.rst
+
+.. include:: /includes/option/commandoption-mongodrdl-upload.rst
+
+.. include:: /includes/option/commandoption-mongodrdl-download.rst
+
+.. include:: /includes/option/commandoption-mongodrdl-delete.rst
+
+.. include:: /includes/option/commandoption-mongodrdl-name-schema.rst
+
+.. _mongodrdl-command-line-options:
+
+Options
+-------
 
 Core Options
 ~~~~~~~~~~~~
@@ -48,6 +114,8 @@ Core Options
 .. include:: /includes/option/option-mongodrdl-verbose.rst
 
 .. include:: /includes/option/option-mongodrdl-quiet.rst
+
+.. include:: /includes/option/option-mongodrdl-uri.rst
 
 .. include:: /includes/option/option-mongodrdl-host.rst
 
@@ -67,12 +135,7 @@ Core Options
 
 .. include:: /includes/option/option-mongodrdl-preJoined.rst
 
-.. Kerberos Options
-.. ~~~~~~~~~~~~~~~~
-
-.. .. include:: /includes/option/option-mongodrdl-gssapiServiceName.rst
-
-.. .. include:: /includes/option/option-mongodrdl-gssapiHostName.rst
+.. include:: /includes/option/option-mongodrdl-schemaSource.rst
 
 TLS/SSL Options
 ~~~~~~~~~~~~~~~
@@ -93,6 +156,8 @@ TLS/SSL Options
 
 .. include:: /includes/option/option-mongodrdl-sslFIPSMode.rst
 
+.. include:: /includes/option/option-mongodrdl-minimumTLSVersion.rst
+
 .. _mongodrdl-auth-options: 
 
 Authentication Options
@@ -106,6 +171,10 @@ Authentication Options
 
 .. include:: /includes/option/option-mongodrdl-authenticationMechanism.rst
 
+.. include:: /includes/option/option-mongodrdl-gssapiServiceName.rst
+
+.. include:: /includes/option/option-mongodrdl-gssapiHostName.rst
+
 .. _mongodrdl-custom-filters:
 
 Custom Filters
@@ -117,7 +186,7 @@ You can add a special field to your schema to pass a custom
 MongoDB :manual:`$match </reference/operator/aggregation/match>`
 query string to your MongoDB instance.
 
-Use the ``--customFilterField`` option with :program:`mongodrdl` to name
+Use the ``--customFilterField`` option with :binary:`~bin.mongodrdl` to name
 a custom filter field. This field passes a native MongoDB
 :manual:`$match </reference/operator/aggregation/match>`
 stage to use as the first stage of the aggregation pipeline,
@@ -130,6 +199,8 @@ are not exposed in the relational schema.
 
 For an example of custom filter usage, see
 :ref:`mongodrdl-custom-filters-example`.
+
+.. _mongodrdl-usage-examples:
 
 Usage Examples
 --------------
@@ -197,45 +268,47 @@ Authentication Example
 If your MongoDB server is running with :manual:`authentication
 </core/authentication/>` enabled, you must specify a username,
 password, and authentication database as options to your
-:program:`mongodrdl` command.
+:binary:`~bin.mongodrdl` command.
 
 To create a :ref:`.drdl <drdl>` file from a
 :manual:`mongod </reference/mongod>` instance with authentication
 enabled, use the following command format:
 
-.. example::
+.. class:: copyable-code
+.. code-block:: shell
 
-   .. class:: copyable-code
-   .. code-block:: shell
-
-      mongodrdl --host myhost.example.net:27017 \
-                --username dbUser \
-                --password myPassword \
-                --db reports \
-                --collection FY2017 \
-                --authenticationDatabase admin \
-                --out schema.drdl
+   mongodrdl --host myhost.example.net:27017 \
+             --username dbUser \
+             --password myPassword \
+             --db reports \
+             --collection FY2017 \
+             --authenticationDatabase admin \
+             --out schema.drdl
 
 MongoDB Atlas Example
 ---------------------
 
-`Atlas <https://docs.atlas.mongodb.com/>`_ is a cloud service for
-running, monitoring, and maintaining MongoDB deployments, including the
-provisioning of dedicated servers for the MongoDB instances.
+`MongoDB Atlas <https://docs.atlas.mongodb.com/>`_ is a cloud service
+for running, monitoring, and maintaining MongoDB deployments, including
+the provisioning of dedicated servers for MongoDB instances.
 
-To create a :ref:`.drdl <drdl>` file from an Atlas database, use the
+.. note::
+
+   MongoDB Atlas now offers a hosted |bi-short| and does not
+   require a :ref:`.drdl <drdl>` file. For more information on the
+   Atlas-hosted |bi-short|, see :ref:`bi-connection`.
+
+If you are running the |bi-short| on premises and wish to create a
+:ref:`.drdl <drdl>` file from an Atlas database, use the
 following command format:
 
-.. example::
+.. class:: copyable-code
+.. code-block:: shell
 
-   
-
-   .. class:: copyable-code
-   .. code-block:: shell
-
-      mongodrdl --host <domain0>.mongodb.net:27017,<domain1>.mongodb.net:27017,... \
-                --username <username> \
-                --password <password> \
-                --ssl \
-                --authenticationDatabase admin \
-                --db <database>
+   mongodrdl --host <domain0>.mongodb.net:27017,<domain1>.mongodb.net:27017,... \
+             --username <username> \
+             --password <password> \
+             --ssl \
+             --authenticationDatabase admin \
+             --db <database> \
+             --out schema.drdl

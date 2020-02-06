@@ -4,10 +4,6 @@ Supported SQL Functions and Operators
 
 .. default-domain:: mongodb
 
-|bi| Version 2.2 is compatible with `SQL-99
-<https://mariadb.com/kb/en/sql-99/>`_ `SELECT statements
-<https://mariadb.com/kb/en/sql-99/select-statement/>`_.
-
 The following tables list the various MySQL functions, constructors, and
 operators supported in |bi| 2.2.
 
@@ -43,6 +39,21 @@ Comparison Functions and Operators
      - Return the largest argument
    * - ``IN()``
      - Check whether a value is within a set of values
+   * - ``INTERVAL(N,N1,N2,...)``
+     - Return the 0-based index position of last number in the list to be 
+       ``< N``. Return ``-1`` if ``N`` is ``NULL``
+     
+       ``N1``, ``N2``, etc. must be given in ascending order. 
+
+       .. example::
+
+          .. code-block:: sql
+
+             SELECT INTERVAL(26, 2, 9, 12, 28.5, 62, 2300);
+          
+          Returns ``3`` because ``12`` is the last number in the list 
+          less than ``26``.
+
    * - ``IS``
      - Test a value against a boolean
    * - ``IS NOT``
@@ -97,22 +108,25 @@ JOIN Expressions
    * - Expression
      - Description
 
-   * - JOIN
+   * - ``JOIN``
      - Select records that have matching values in multiple tables.
 
-   * - INNER JOIN
-     - Semantically equivalent to JOIN.
+   * - ``INNER JOIN``
+     - Semantically equivalent to ``JOIN``.
 
-   * - LEFT JOIN
+   * - ``LEFT JOIN``
      - Return all records from the left table, and the matched records
        from the right table.
 
-   * - RIGHT JOIN
+   * - ``RIGHT JOIN``
      - Return all records from the right table, and the matched records
        from the left table.
 
-   * - NATURAL JOIN
+   * - ``NATURAL JOIN``
      - Return only records which do not appear in both tables.
+
+   * - ``USING``
+     - Return all records where the given columns appear in both tables.
 
 Control Flow Functions and Operators
 ------------------------------------
@@ -331,6 +345,9 @@ Date and Time Functions
      - Return the last day of the month for the argument
    * - ``MAKEDATE()``
      - Create a date from the year and day of year
+   * - ``MICROSECOND()``
+     - Return the microseconds from the input time or datetime expression 
+       as a number between 0 and 999999 inclusive.
    * - ``MINUTE()``
      - Return the minute from the argument
    * - ``MONTH()``
@@ -387,6 +404,9 @@ Cast Functions and Operators
    * - ``CONVERT()``
      - Convert a value as a certain type
 
+For more information on how the |bi-short| performs type conversions,
+see :ref:`type-conversion-modes`.
+
 Subquery Constructors
 ---------------------
 
@@ -399,6 +419,8 @@ Subquery Constructors
 
    * - ``ROW()``
      - Returns one row of values rather than one column of values
+
+.. _information-functions:
 
 Information Functions
 ---------------------
@@ -426,6 +448,10 @@ Information Functions
      - The user name and host name provided by the client
    * - ``VERSION()``
      - Return a string that indicates the MySQL server version
+   * - ``EXPLAIN()``
+     - Return information about an SQL query without running it or fetching
+       results. Includes the full :manual:`aggregation operation
+       </aggregation>` which |bi-short| will send to MongoDB.
 
 ``GROUP BY`` (Aggregate) Functions
 ----------------------------------
@@ -457,7 +483,8 @@ Information Functions
      - Return the sample standard deviation
    * - ``SUM()``
      - Return the sum
-
+   * - ``GROUP_CONCAT()``
+     - Return a concatenated string, non-``NULL`` values only
 
 Utility Statements
 ------------------
@@ -472,12 +499,14 @@ Utility Statements
    * - ``USE <databaseName>``
      - Choose the database to use as the current database for subsequent statements
 
+.. _admin-statements:
+
 Database Administration Statements
 ----------------------------------
 
 .. list-table::
    :header-rows: 1
-   :widths: 30 70
+   :widths: 50 50
 
    * - Statement
      - Description
@@ -488,7 +517,7 @@ Database Administration Statements
        columns to MongoDB collection and fields.
 
    * - ``SHOW [GLOBAL | SESSION] STATUS [LIKE 'pattern' | WHERE expr]``
-     - Shows :program:`mongosqld` server metrics. The structure contains
+     - Shows :binary:`~bin.mongosqld` server metrics. The structure contains
        non-empty values for at least the following fields:
 
        * ``Bytes_received``
@@ -504,3 +533,13 @@ Database Administration Statements
        qualifier. If you specify the ``GLOBAL`` qualifier,
        ``SHOW STATUS`` will instead show aggregate statistics for the
        entire server.
+
+   * - ``ALTER TABLE <tableName> [alter_specification [, alter_specification] ...]``
+     - Use to:
+
+       - Rename tables
+       - Add, update or remove columns in a table
+       - Change the type of a column in a table
+
+   * - ``RENAME TABLE <tableName> TO <newTableName> [, <tableName2> TO <newTableName2> ] ...``
+     - Use to rename one or more tables.

@@ -1,6 +1,8 @@
-============
-Installation
-============
+:noprevnext:
+
+================================
+Install {+bi-short+} On Premises
+================================
 
 .. default-domain:: mongodb
 
@@ -10,15 +12,87 @@ Installation
    :depth: 1
    :class: singlecol
 
-.. include:: /includes/toc/dfn-list-installation-landing.rst
+.. include:: /includes/fact-bi-enterprise.rst
 
+.. _installation-guides:
+
+The |bi| can be installed on premises or hosted in MongoDB Atlas. Follow
+the guide for your platform below to install the |bi-short|, or see
+:doc:`atlas-bi-connector`.
+
+Installation Guides
+-------------------
+
+.. include:: /includes/toc/dfn-list-install.rst
+
+Supported Platforms
+-------------------
+
+|bi-short| supports the 32-bit and 64-bit versions of the following
+Windows editions:
+
+.. list-table::
+   :widths: 40 60
+   :stub-columns: 1
+   :header-rows: 1
+
+   * - Windows Edition
+     - Versions
+
+   * - Windows
+     - 7 or later
+
+   * - Windows Server
+     - 2008 R2 or later
+
+|bi-short| supports the 64-bit versions of following the operating
+systems:
+
+.. list-table::
+   :widths: 40 60
+   :stub-columns: 1
+   :header-rows: 1
+
+   * - Operating System
+     - Versions
+
+   * - macOS
+     - 
+       - 10.10 or later
+
+   * - Red Hat Enterprise Linux or CentOS
+     - 
+       - 6.2 or later
+       - 7.0 or later
+
+   * - Debian
+     - 
+       - 8.1 or later ("Jessie")
+       - 9.1 or later ("Stretch")
+
+   * - Ubuntu
+     - 
+       - 14.04 ("Trusty")
+       - 16.04 ("Xenial")
+
+   * - SUSE Enterprise Linux
+     - 
+       - 12
+
+|bi-short| also supports the following system architectures:
+
+- s390x systems running Red Hat Enterprise Linux 6.0+
+
+- s390x systems running Red Hat Enterprise Linux 7.2+
+
+- PPC64LE systems running Red Hat Enterprise Linux 7.1+
 
 .. class:: hidden
 
    .. toctree::
       :titlesonly:
 
-      /tutorial/install-bi-connector
-      /tutorial/install-auth-plugin-c
-      /tutorial/install-auth-plugin-jdbc
-      /tutorial/create-system-dsn
+      /tutorial/install-bi-connector-windows
+      /tutorial/install-bi-connector-macos
+      /tutorial/install-bi-connector-rhel
+      /tutorial/install-bi-connector-debian

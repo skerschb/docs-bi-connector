@@ -32,7 +32,12 @@ extensions = [
     'sphinx.ext.todo',
     'mongodb',
     'directives',
-    'intermanual'
+    'intermanual',
+    'fasthtml',
+    'tabs',
+    'landing_cards',
+    'source_constants',
+    'xmlrole'
 ]
 
 templates_path = ['.templates']
@@ -56,11 +61,55 @@ rst_epilog = '\n'.join([
     '.. |hardlink| replace:: https://docs.mongodb.com/bi-connector/',
     '.. |bi| replace:: MongoDB Connector for BI',
     '.. |bi-short| replace:: BI Connector',
+    '.. |bi-atlas| replace:: MongoDB Connector for Business Intelligence for MongoDB Atlas',
+    '.. |bi-atlas-short| replace:: BI Connector for Atlas',
+    '.. |bi-atlas-short-link| replace:: :doc:`BI Connector for Atlas </atlas-bi-connector>`',
+    '.. |odbc-driver-name| replace:: MongoDB ODBC driver',
+    '.. |tls-ssl| replace:: :abbr:`TLS (Transport Layer Security)`/:abbr:`SSL (Secure Sockets Layer)`',
+    '.. |ssl| replace:: :abbr:`SSL (Secure Sockets Layer)`',
+    '.. |tls| replace:: :abbr:`TLS (Transport Layer Security)`',
+    '.. |http| replace:: :abbr:`HTTP (HyperText Transport Protocol)`',
+    '.. |https| replace:: :abbr:`HTTPS (Secure HyperText Transport Protocol)`',
+    '.. |cidr| replace:: :abbr:`CIDR (Classless Inter-Domain Routing)`',
+    '.. |ipaddr| replace:: :abbr:`IP (Internet Protocol)`',
+    '.. |jira| replace:: `Jira <https://jira.mongodb.org>`__',
+    '.. |epoch-time| replace:: Timestamp in the number of seconds that have elapsed since the `UNIX epoch <https://en.wikipedia.org/wiki/Unix_time?oldid=828172017>`__',
+    '.. |iso8601-time| replace:: Timestamp in `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601?oldid=793821205>`__ date and time format in |UTC|',
+    '.. |utc| replace:: :abbr:`UTC (Coordinated Universal Time)`',
+    '.. |ldap| replace:: :abbr:`LDAP (Lightweight Directory Access Protocol)`',
+    '.. |ldaps| replace:: :abbr:`LDAPS (Secure Lightweight Directory Access Protocol)`',
+    '.. |kmip| replace:: :abbr:`KMIP (Key Management Interoperability Protocol)`',
+    '.. |url| replace:: :abbr:`URL (Uniform Resource Locator)`',
+    '.. |dsn| replace:: :abbr:`DSN (Data Source Name)`',
+    '.. |odbc| replace:: :abbr:`ODBC (Open Database Connectivity)`',
+    '.. |jdbc| replace:: :abbr:`JDBC (Java Database Connectivity)`',
+    '.. |sql| replace:: :abbr:`SQL (Structured Query Language)`',
+    '.. |kdc| replace:: :abbr:`KDC (Key Distribution Center)`',
+    '.. |adc| replace:: :abbr:`ADC (Active Directory Controller)`',
+    '.. |spn| replace:: :abbr:`SPN (Service Principal Name)`',
+    '.. |upn| replace:: :abbr:`UPN (User Principal Name)`',
+    '.. |sasl| replace:: :abbr:`SASL (Simple Authentication and Security Layer)`',
+    '.. |iana| replace:: :abbr:`IANA (Internet Assigned Numbers Authority)`',
+    '.. |scram| replace:: :abbr:`SCRAM (Salted Challenge Response Authentication Mechanism)`'
 ])
+
+source_constants = {
+    'odbc-driver': '`MongoDB ODBC Driver for BI Connector <https://github.com/mongodb/mongo-odbc-driver/releases/>`__',
+    'bi-atlas-short': 'BI Connector for Atlas',
+    'bi-short': 'BI Connector',
+    'download-center': '`MongoDB Download Center <https://www.mongodb.com/download-center/bi-connector>`__',
+    'download-center-bi': '`MongoDB Connector for BI <https://www.mongodb.com/download-center/bi-connector>`__',
+    'download-center-tableau': '`MongoDB Connector for BI <https://www.mongodb.com/download-center/bi-connector?jmp=tbl>`__',
+    'download-center-url': 'https://www.mongodb.com/download-center/bi-connector'
+}
 
 extlinks = {
     'issue': ('https://jira.mongodb.org/browse/%s', '' ),
     'manual': ('http://docs.mongodb.com/manual%s', ''),
+    'v3.6': ('https://docs.mongodb.com/v3.6%s', ''),
+    'website': ('https://www.mongodb.com%s?jmp=docs', ''),
+    'ms-docs': ('https://docs.microsoft.com/en-us%s',''),
+    'v2.10': ('https://docs.mongodb.com/bi-connector/v2.10%s','')
 }
 
 intersphinx_mapping = {}

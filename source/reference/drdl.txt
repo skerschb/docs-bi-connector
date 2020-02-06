@@ -15,8 +15,9 @@ Document Relational Definition Language
 Document Relational Definition Language (``DRDL``) defines a
 relational view of a MongoDB schema.
 
-:program:`mongodrdl` samples documents from your MongoDB collections and
-derives a ``DRDL`` file from those documents. :program:`mongosqld` then
+:binary:`~bin.mongodrdl` samples documents from your MongoDB
+collections and derives a ``DRDL`` file from those documents.
+:binary:`~bin.mongosqld` then
 uses the schema defined in ``DRDL`` files to allow MySQL clients to
 query your MongoDB data.
 
@@ -27,6 +28,7 @@ The ``DRDL`` file lists your databases, tables, and columns in
 `YAML <http://yaml.org/>`_ format.
 
 .. code-block:: yaml
+   :copyable: false
 
    schema:
    - db: <database name>
@@ -42,7 +44,7 @@ The ``DRDL`` file lists your databases, tables, and columns in
          SqlType: <mapped SQL column type>
 
 Example
-```````
+~~~~~~~
 
 .. include:: /includes/fact-mongodrdl-example.rst
 
@@ -88,7 +90,7 @@ with the following cases:
        |bi-short| maps the indexed field into an array of numeric
        longitude-latitude coordinates.
 
-       See :ref:`bi-geospatial` for an example.
+       See :ref:`geospatial-data` for an example.
 
        .. include:: /includes/fact-geospatial-views.rst
 
@@ -119,7 +121,7 @@ every identifier that contains ``.`` characters or mixed-case
 characters.
 
 Example
-```````
+~~~~~~~
 
 Consider the following document:
 
@@ -136,7 +138,7 @@ Consider the following document:
        "members_since" : ISODate("2002-04-12T00:00:00Z")
    }
 
-Running :program:`mongodrdl` on a collection containing this document
+Running :binary:`~bin.mongodrdl` on a collection containing this document
 results in the following fields in the generated schema:
 
 .. list-table::
@@ -181,9 +183,9 @@ collections: one without the array, and the other having one document
 per array element.
 
 Example
-```````
+~~~~~~~
 
-If you run :program:`mongodrdl` on a collection named ``families``
+If you run :binary:`~bin.mongodrdl` on a collection named ``families``
 which contains the following document:
 
 .. code-block:: javascript
@@ -290,9 +292,10 @@ together with their family information using the following query:
    ON m._id = f._id;
 
 Pre-Joining
-```````````
+~~~~~~~~~~~
 
-If you provide the :option:`--preJoined` option to :program:`mongodrdl`,
+If you provide the :option:`--preJoined <mongodrdl --preJoined>`
+option to :binary:`~bin.mongodrdl`,
 |bi-short| adds the fields in the containing document to each
 array element's document, thus "pre-joining" the table.
 
@@ -344,6 +347,7 @@ For example, given the following schema describing a cloud of points with
 up to three components:
 
 .. code-block:: yaml
+   :copyable: false
 
    schema:
    - db: test
@@ -387,12 +391,12 @@ Aggregation Pipelines
 ---------------------
 
 Aggregation Pipelines using Views
-`````````````````````````````````
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: /includes/fact-pipeline-views.rst
 
 Aggregation Pipelines in DRDL
-`````````````````````````````
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 |bi-short| can use :ref:`aggregation pipelines <aggregation-pipeline>` as
 part of the schema to transform documents from the collection into the
@@ -410,13 +414,14 @@ For example, consider a simple document in a collection named
    }
 
 
-:program:`mongodrdl` generates a schema with the tables
+:binary:`~bin.mongodrdl` generates a schema with the tables
 ``simpleFamilies`` and ``simpleFamilies_familyMembers``.
 
 The table ``simpleFamilies_familyMembers`` enumerates each family
 member and has the following pipeline:
 
 .. code-block:: yaml
+   :copyable: false
 
    pipeline:
    - $unwind:
@@ -427,58 +432,4 @@ This pipeline uses :pipeline:`$unwind` to create a new record for each
 member of ``familyMembers``. The schema tracks the array index in
 the field ``familyMembers_idx``.
 
-.. _bi-geospatial:
-
-Geospatial Data
----------------
-
-.. versionadded:: 1.1.0
-
-If a collection contains a
-:manual:`geospatial index </applications/geospatial-indexes>`, the
-connector maps the indexed field into an array of numeric
-longitude-latitude coordinates.
-
-Example
-```````
-
-Given the following collection:
-
-.. code-block:: javascript
-
-   db.points.createIndex( { pos : "2dsphere" } )
-   db.points.insert({
-       pos : { type: "Point", coordinates: [ -73.97, 40.77 ] },
-       name: "Central Park",
-       category : "Parks"
-   })
-
-:program:`mongodrdl` generates the following schema:
-
-.. code-block:: yaml
-
-   schema:
-   - db: test
-     tables:
-     - table: points
-       collection: points
-       pipeline: []
-       columns:
-       - Name: _id
-         MongoType: bson.ObjectId
-         SqlName: _id
-         SqlType: varchar
-       - Name: category
-         MongoType: string
-         SqlName: category
-         SqlType: varchar
-       - Name: name
-         MongoType: string
-         SqlName: name
-         SqlType: varchar
-       - Name: pos.coordinates
-         MongoType: geo.2darray
-         SqlName: pos.coordinates
-         SqlType: numeric[]
-
-.. include:: /includes/fact-geospatial-views.rst
+.. include:: /includes/geospatial-data.rst

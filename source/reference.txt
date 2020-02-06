@@ -17,5 +17,10 @@ Reference
    .. toctree::
       :titlesonly:
 
-      /reference/log-messages
+      /tutorial/ssl-setup
       /reference/drdl
+      /reference/log-messages
+      /reference/type-conversion
+      /reference/user-authorization
+      /reference/system-variables
+      /supported-operations

@@ -46,7 +46,7 @@ inherit:
   program: _shared
   file: options-shared.yaml
 description: |
-  Specifies a resolvable hostname for the :program:`mongod` to which to
+  Specifies a resolvable hostname for the :binary:`~bin.mongod` to which to
   connect. By default, the {{program}} attempts to connect to a MongoDB
   instance running on the localhost on port number ``27017``.
 
@@ -123,7 +123,7 @@ args: <path>
 default: |
   Standard out.
 description: |
-  Specifies the path where :program:`mongodrdl` will write the schema file. To
+  Specifies the path where :binary:`~bin.mongodrdl` will write the schema file. To
   send the schema to standard output, specify "``-``" instead of
   a path.
 optional: true
@@ -237,11 +237,81 @@ inherit:
   file: options-shared.yaml
 ---
 program: mongodrdl
+name: minimumTLSVersion
+directive: option
+args: <TLS1_0|TLS1_1|TLS1_2>
+default: TLS1_1
+description: |
+  Specifies the minimum required TLS version for
+  :binary:`~bin.mongodrdl` to connect to a :binary:`~bin.mongod` or
+  :binary:`~bin.mongos` instance. The default value ``TLS1_1``
+  corresponds to TLS version 1.1.
+---
+program: mongodrdl
 name: preJoined
 directive: option
 args: null
 description: |
   Generate unwound tables including parent columns, resulting in a
   "pre-joined" table.
+optional: true
+---
+program: mongodrdl
+name: schemaSource
+directive: option
+args: <db-name>
+inherit:
+  name: schemaSource
+  program: _shared
+  file: options-shared.yaml
+description: |
+
+  .. versionadded:: 2.11
+
+  Specifies the database where the schema information is stored. This
+  option is not used by the :commandoption:`sample <sample>` command.
+---
+program: mongodrdl
+name: uri
+directive: option
+args: <mongodb-uri>
+description: |
+  .. versionadded:: 2.12
+
+  MongoDB URI connection string.
+
+  .. important::
+   
+     The following command-line options cannot be used in conjunction
+     with :option:`--uri` option:
+   
+     - :option:`--host`
+     - :option:`--port`
+     - :option:`--db`
+     - :option:`--username`
+     - :option:`--password` (if the URI connection string also includes
+       the password)
+     - :option:`--authenticationDatabase`
+     - :option:`--authenticationMechanism`
+   
+     Instead, specify these options as part of your :option:`--uri` 
+     connection string.
+---
+program: mongodrdl
+name: gssapiHostName
+default: remote server's address
+directive: option
+args: <hostname>
+description: |
+  Hostname to use when authenticating using GSSAPI/Kerberos.
+optional: true
+---
+program: mongodrdl
+name: gssapiServiceName
+default: mongodb
+directive: option
+args: <service-name>
+description: |
+  Service name to use when authenticating using GSSAPI/Kerberos.
 optional: true
 ...

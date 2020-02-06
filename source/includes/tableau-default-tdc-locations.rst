@@ -1,11 +1,17 @@
-.. list-table::
-   :widths: 25 75
-   :stub-columns: 1
-   :header-rows: 1
+.. tabs-platforms::
 
-   * - Platform
-     - Default TDC Save Path
-   * - macOS
-     - /Users/{name}/Documents/My Tableau Repository/Datasources
-   * - Windows
-     - C:\Users\{username}\Documents\My Tableau Repository\Datasources
+   hidden: true
+
+   tabs:
+
+     - id: windows
+       content: |
+         .. code-block:: ps1
+
+            C:\Users\{username}\Documents\My Tableau Repository\Datasources
+
+     - id: macos
+       content: |
+         .. code-block:: sh
+
+            /Users/{name}/Documents/My Tableau Repository/Datasources

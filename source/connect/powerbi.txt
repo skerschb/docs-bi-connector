@@ -1,0 +1,25 @@
+:noprevnext:
+
+=======================================
+Connect from Microsoft Power BI Desktop
+=======================================
+
+.. default-domain:: mongodb
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 1
+   :class: singlecol
+
+This tutorial demonstrates how to connect to the |bi| using
+`Microsoft Power BI Desktop <https://powerbi.microsoft.com/>`_.
+
+.. include:: /includes/client-connection-prereqs.rst
+
+.. _connect-with-powerbi:
+
+Procedure
+---------
+
+.. include:: /includes/steps/connect-powerbi.rst
