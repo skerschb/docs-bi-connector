@@ -83,7 +83,7 @@ Bug Fixes
 Bug Fixes
 ~~~~~~~~~
 
-Fixes the following bugs:
+TEST TEST TEST Fixes the following bugs:
 
 - ``unix_timestamp`` returning incorrect results
   because it did not handle Daylight Savings Time when necessary.
