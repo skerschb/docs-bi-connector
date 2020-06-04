@@ -17,7 +17,7 @@ Launch {+bi-short+}
 Overview
 --------
 
-:binary:`~bin.mongosqld` is the |bi-short| program which connects
+:binary:`~bin.mongosqld` HELLO is the |bi-short| program which connects
 your MongoDB instance to your BI tool.  :binary:`~bin.mongosqld`
 requires a data schema which maps to your MongoDB collections and
 databases. You have several options for creating a schema and
